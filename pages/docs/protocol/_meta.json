@@ -1,8 +1,9 @@
 {
     "architecture": "Architecture",
     "connections": "Connections",
+    "proofs": "Proofs",
+    "oauth": "OAuth",
     "cross-chain": "Cross Chain",
     "encryption": "Encryption",
-    "proofs": "Proofs",
-    "rpc": "RPC"
+    "proxy-rpc": "Proxy RPC"
 }

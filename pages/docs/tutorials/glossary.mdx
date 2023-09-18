@@ -1,0 +1,83 @@
+---
+title: Glossary
+---
+import Markdown from 'markdown-to-jsx';
+import glossary from "./../../../public/glossary.json";
+
+export const GlossaryRender = () => {
+
+    function toTitleCase(str) {
+        return str.replace(
+            /\w\S*/g,
+            function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1);
+            }
+        );
+    }
+    // console.log('Found', Object.keys(glossary).length, 'Word/Meanings.')
+
+    return Object.entries(glossary).map(([word, meaning])=>{
+        return(
+            <div className='word' data-word={word} key={word}>
+                <h3 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-mt-8 nx-text-2xl">
+                    {toTitleCase(word)}
+                    <a href={word} id={word} class="subheading-anchor" aria-label="Permalink for this section"></a>
+                </h3>
+                <p className="nx-mt-6 nx-leading-7">
+                    {meaning.slice(0, 1).toUpperCase()}{meaning.slice(1)}
+                </p>
+            </div>
+        )
+    });
+}
+
+export const GlossaryComp = () => {
+
+    function data(e){
+        let searchVal = e.target.value;
+        let words = document.getElementsByClassName('word');
+
+        if (searchVal.trim() != ""){
+            for (var i=0; i < words.length; i++){
+                let word = words[i]
+                let wordVal = word.getAttribute('data-word');
+
+                if (wordVal.toLowerCase().includes(searchVal.trim().toLowerCase()) == true){
+                    word.style.display = 'block';
+                }
+                else {
+                    word.style.display = 'none';
+                }
+            }
+        }
+        else{
+            for (var i=0; i < words.length; i++){
+                let word = words[i]
+                word.style.display = 'block';
+            }
+        }
+
+    }
+
+    return(
+        <>
+            <input type="text"
+                onChange={data}
+                placeholder="Search"
+            />
+            <GlossaryRender />
+        </>
+    )
+}
+
+# Web3 Glossary
+
+<GlossaryComp />
+
+## References
+- [https://www.blocknative.com/glossary](https://www.blocknative.com/glossary)
+- [https://unstoppabledomains.com/blog/the-web3-glossary](https://unstoppabledomains.com/blog/the-web3-glossary)
+- [https://cypherpunks-core.github.io/ethereumbook/glossary.html#quick-glossary](https://cypherpunks-core.github.io/ethereumbook/glossary.html#quick-glossary)
+- [https://consensys.net/knowledge-base/a-blockchain-glossary-for-beginners/](https://consensys.net/knowledge-base/a-blockchain-glossary-for-beginners/)
+- [https://www.chainabuse.com/glossary](https://www.chainabuse.com/glossary)
+- [https://academy.binance.com/en/glossary](https://academy.binance.com/en/glossary)

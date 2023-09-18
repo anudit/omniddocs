@@ -1,4 +1,6 @@
 {
     "react-native": "React Native",
-    "web": "Web"
+    "web": "Web",
+    "solidity": "Solidity",
+    "glossary": "Glossary"
 }

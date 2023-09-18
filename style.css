@@ -6,6 +6,10 @@ body {
   font-feature-settings:
     'rlig' 1,
     'calt' 1;
+  background-image: url(/background.png);
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-attachment: fixed;
 }
 
 .home-content p {
@@ -44,7 +48,33 @@ code.text-\[\.9em\] {
   .home-content p {
     font-size: 0.9rem;
   }
+
   .home-content .hide-small {
     display: none;
   }
+}
+
+html[class~=dark] .dark\:nx-bg-dark {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.GraphQLSandbox {
+  min-height: 800px;
+}
+
+.GraphQLSandbox iframe {
+  min-height: 800px;
+}
+
+.dark body article pre {
+  background-color: transparent;
+  border: 1px solid rgba(224, 243, 255, 0.1);
+  border-radius: 10px;
+}
+
+.light body article pre {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
 }

@@ -1,0 +1,50 @@
+---
+title: Subgraph
+---
+
+import { ApolloSandbox } from '@apollo/sandbox/react';
+
+# Subgraph - GraphQL API
+
+## Arbitrum Goerli
+
+Build completed: QmaCz4BSXxTicXE6TmPuPrvHxAAtZ5A9vdqHjzvagDMsqW
+
+Deployed to https://thegraph.com/studio/subgraph/groupmanager
+
+Subgraph endpoints: Queries (HTTP): https://api.studio.thegraph.com/query/1649/groupmanager/v1.1
+
+## Playground
+
+[Open in New Tab](https://studio.apollographql.com/sandbox/explorer?hideCookieToggle=true&initialRequestQueryPlan=false&parentSupportsSubscriptions=true&runTelemetry=true&shouldDefaultAutoupdateSchema=true&version=2.5.1)
+
+
+<div className="GraphQLSandbox">
+<ApolloSandbox
+    initialEndpoint='https://api.studio.thegraph.com/query/1649/groupmanager/version/latest'
+    persistExplorerState={true}
+    intialState={{
+        document: `
+            query GetGroups {
+                groups(first: 5) {
+                    id
+                    merkleTree {
+                        root
+                        depth
+                    }
+                    members {
+                        index
+                        identityCommitment
+                    }
+                    verifiedProofs {
+                        signal
+                        timestamp
+                    }
+                    timestamp
+                    admin
+                }
+            }
+        `
+    }}
+/>
+</div>

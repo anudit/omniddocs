@@ -1,5 +1,90 @@
 ---
-title: Cross Chain
+title: Cross Chain Messaging
 ---
 
+import { Steps } from 'nextra/components'
+
 # Cross Chain
+
+## Introduction
+
+<br/>
+<picture style={{height: '300px'}}>
+    <source srcset="/diagrams/cross-1-light.png" media="(prefers-color-scheme: light)" />
+    <source srcset="/diagrams/cross-1-dark.png" media="(prefers-color-scheme: dark)" />
+    <img src="/diagrams/cross-1-dark.png" alt="Image" class="image" />
+</picture>
+
+Manage Groups and Prove from any Chain.
+
+## Interface
+
+Call the following functions on the forwarder contract to pass messages to the base chain GroupManager Contract.
+
+```solidity filename="IForwarder.sol"
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+interface IForwarder {
+
+    // Directly verify proofs on the base chain.
+    function verifyProof(
+        uint256 groupId,
+        uint256 merkleTreeRoot,
+        uint256 signal,
+        uint256 nullifierHash,
+        uint256 externalNullifier,
+        uint256[8] calldata proof
+    ) external;
+
+    // Directly send `abi.encodeWithSelector` messages to the GroupManager Contract.
+    function _sendInternal(
+        bytes memory __selectorEncodedPayload
+    ) external;
+}
+```
+
+## Integration
+
+<Steps>
+### Grab the required Addresses
+- [Deployment addresses](/docs/integration/deployments)
+
+### Setup Contracts
+
+```solidity filename="OmnidDemo.sol"
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import './IForwarder.sol';
+
+contract OmnidDemo {
+
+    IForwarder forwarder;
+    constructor (address _forwarderAddress) {
+        forwarder = IForwarder(_forwarderAddress);
+    }
+
+    function verifyProof(
+        uint256 groupId,
+        uint256 merkleTreeRoot,
+        uint256 signal,
+        uint256 nullifierHash,
+        uint256 externalNullifier,
+        uint256[8] calldata proof
+    ) public {
+        forwarder.verifyProof(
+            groupId,
+            merkleTreeRoot,
+            signal,
+            nullifierHash,
+            externalNullifier,
+            proof
+        );
+    }
+
+}
+```
+
+### Deploy 🎉
+</Steps>
