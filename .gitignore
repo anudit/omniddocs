@@ -11,3 +11,4 @@ public/*.toml
 public/.nextra
 .vercel
 .vscode
+next-env.d.ts

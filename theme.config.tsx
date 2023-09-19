@@ -53,8 +53,8 @@ const config: DocsThemeConfig = {
     const { route } = useRouter()
     const socialCard =
       route === '/' || !title
-        ? 'https://omnid.io/og.jpeg'
-        : `https://omnid.io/api/og?title=${title}`
+        ? 'https://docs.omnid.io/og.jpeg'
+        : `https://docs.omnid.io/api/og?title=${title}`
 
     return (
       <>
