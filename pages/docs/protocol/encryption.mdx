@@ -12,12 +12,13 @@ import { Tabs } from 'nextra/components'
 <picture>
     <source srcset="/diagrams/enc-1-light.png" media="(prefers-color-scheme: light)" />
     <source srcset="/diagrams/enc-1-dark.png" media="(prefers-color-scheme: dark)" />
-    <img src="/diagrams/enc-1-dark.png" alt="Image" class="image" />
+    <img src="/diagrams/enc-1-dark.png" alt="Image" className="image" />
 </picture>
 
-
-Multi-hop Proxy Re-encryption, also known as Transform Encryption, is a cryptographic technique that allows data encrypted with one person (Alice's) public key, to be transformed, so that it can be decrypted using another person (Bob's) private key, without revealing either person's private key. 
-This transformation relies on a special key calculated from the first person's private key and the second person's public key.
+Multi-hop Proxy Re-encryption, also known as Transform Encryption, 
+is a cryptographic technique that allows data encrypted with my public key, to be transformed in a way, 
+so that it can be decrypted using your private key, without revealing either of our private keys. 
+This transformation relies on a special key calculated from my private key and your public key.
 
 ## @omnid/pre
 A proxy re-encryption implementation using the secp256k1 curve.

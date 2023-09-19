@@ -12,6 +12,10 @@ body {
   background-attachment: fixed;
 }
 
+:is(html[class~=dark] body) {
+  background-color: rgba(10, 10, 10, var(--tw-bg-opacity));
+}
+
 .home-content p {
   margin-top: 1.5em;
   line-height: 1.75em;
@@ -54,11 +58,15 @@ code.text-\[\.9em\] {
   }
 }
 
+/* custom */
+
+/* right sidebar hiring */
 html[class~=dark] .dark\:nx-bg-dark {
   background-color: transparent !important;
   box-shadow: none !important;
 }
 
+/* gql sandbox */
 .GraphQLSandbox {
   min-height: 800px;
 }
@@ -67,6 +75,7 @@ html[class~=dark] .dark\:nx-bg-dark {
   min-height: 800px;
 }
 
+/* codebox */
 .dark body article pre {
   background-color: transparent;
   border: 1px solid rgba(224, 243, 255, 0.1);

@@ -14,6 +14,10 @@ export const GlossaryRender = () => {
             }
         );
     }
+
+    const toId = (str) => {
+        return str.replace(/[^a-zA-Z ]/g, "").toLowerCase().replaceAll(' ', '-')
+    } 
     // console.log('Found', Object.keys(glossary).length, 'Word/Meanings.')
 
     return Object.entries(glossary).map(([word, meaning])=>{
@@ -21,7 +25,7 @@ export const GlossaryRender = () => {
             <div className='word' data-word={word} key={word}>
                 <h3 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-mt-8 nx-text-2xl">
                     {toTitleCase(word)}
-                    <a href={word} id={word} class="subheading-anchor" aria-label="Permalink for this section"></a>
+                    <a href={'#' + toId(word)} id={toId(word)} className="subheading-anchor" aria-label="Permalink for this section"></a>
                 </h3>
                 <p className="nx-mt-6 nx-leading-7">
                     {meaning.slice(0, 1).toUpperCase()}{meaning.slice(1)}
@@ -61,9 +65,11 @@ export const GlossaryComp = () => {
 
     return(
         <>
+            <br/>
             <input type="text"
                 onChange={data}
                 placeholder="Search"
+                className="nx-block nx-w-full nx-appearance-none nx-rounded-lg nx-px-3 nx-py-2 nx-transition-colors nx-text-base nx-leading-tight md:nx-text-sm nx-bg-black/[.05] dark:nx-bg-gray-50/10 focus:nx-bg-white dark:focus:nx-bg-dark placeholder:nx-text-gray-500 dark:placeholder:nx-text-gray-400 contrast-more:nx-border contrast-more:nx-border-current"
             />
             <GlossaryRender />
         </>
@@ -81,3 +87,4 @@ export const GlossaryComp = () => {
 - [https://consensys.net/knowledge-base/a-blockchain-glossary-for-beginners/](https://consensys.net/knowledge-base/a-blockchain-glossary-for-beginners/)
 - [https://www.chainabuse.com/glossary](https://www.chainabuse.com/glossary)
 - [https://academy.binance.com/en/glossary](https://academy.binance.com/en/glossary)
+- [https://semaphore.pse.dev/docs/glossary](https://semaphore.pse.dev/docs/glossary)

@@ -1,6 +1,8 @@
-import { useRouter } from 'next/router'
-import type { DocsThemeConfig } from 'nextra-theme-docs'
-import { useConfig } from 'nextra-theme-docs'
+import { AddIcon, BookIcon, HomeIcon, InfinityIcon, NodeJsIcon, ReactNativeIcon, VersionIcon } from '@components/icons';
+import Tag from '@components/tag';
+import { useRouter } from 'next/router';
+import type { DocsThemeConfig } from 'nextra-theme-docs';
+import { useConfig } from 'nextra-theme-docs';
 
 const logo = (
   <svg
@@ -76,24 +78,11 @@ const config: DocsThemeConfig = {
         <meta name="twitter:url" content="https://omnid.io" />
         <meta
           name="og:title"
-          content={title ? title + ' – Omnid' : 'Omnid'}
+          content={title ? title + ' – Omnid' : 'Omnid Docs'}
         />
         <meta name="og:image" content={socialCard} />
         <meta name="apple-mobile-web-app-title" content="Omnid" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link
-          rel="icon"
-          href="/favicon-dark.svg"
-          type="image/svg+xml"
-          media="(prefers-color-scheme: dark)"
-        />
-        <link
-          rel="icon"
-          href="/favicon-dark.png"
-          type="image/png"
-          media="(prefers-color-scheme: dark)"
-        />
       </>
     )
   },
@@ -133,11 +122,66 @@ const config: DocsThemeConfig = {
     labels: 'feedback'
   },
   sidebar: {
-    titleComponent({ title, type }) {
-      if (type === 'separator') {
-        return <span className="cursor-default">{title}</span>
+    titleComponent({ title, type, route }) {
+      const iconStyle = {
+        marginTop: '2px', marginRight: '10px', strokeWidth: '4px', height: '16px',
+        fill: 'currentColor',
+        stroke: 'currentColor'
       }
-      return <>{title}</>
+      if (type === 'separator') return (<div>{title}</div>)
+
+      if (route === '/docs' || route === '') return (<><HomeIcon style={{
+        ...iconStyle,
+        strokeWidth: '1.5px'
+      }} />{title}</>)
+      if (route === '/docs/protocol') return (<div style={{ display: 'flex', flexDirection: 'row', }}><InfinityIcon style={{
+        ...iconStyle,
+        strokeWidth: '40px',
+      }} />{title}</div>)
+      if (route === '/docs/integration') return (<div style={{ display: 'flex', flexDirection: 'row', }}><AddIcon style={{
+        ...iconStyle,
+        strokeWidth: '40px',
+      }} />{title}</div>)
+      if (route === '/docs/react-native') return (
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <ReactNativeIcon style={{
+              marginTop: '3px', marginRight: '10px', height: '14px',
+            }} />
+            {title}
+          </div>
+          <Tag>
+            Soon
+          </Tag>
+        </div>
+      )
+      if (route === '/docs/nodejs') return (
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <NodeJsIcon style={{
+              marginTop: '2px', marginRight: '10px', height: '16px',
+            }} />
+            {title}
+          </div>
+          <Tag>
+            Soon
+          </Tag>
+        </div>
+      )
+      if (route === '/docs/tutorials') return (
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <BookIcon style={{ ...iconStyle, strokeWidth: '0.5px', height: '20px', marginRight: '6px', marginTop: '0px', marginLeft: '-2px' }} />
+          {title}
+        </div>
+      )
+      if (route === '/docs/v1') return (
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <VersionIcon style={{ ...iconStyle, strokeWidth: '0.5px', marginTop: '3px', height: '14px', marginRight: '10px' }} />
+          {title}
+        </div>
+      )
+
+      return <p style={{ paddingLeft: '6px', paddingRight: '6px' }}>{title}</p>
     },
     defaultMenuCollapseLevel: 2,
     toggleButton: true

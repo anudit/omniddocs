@@ -1,7 +1,13 @@
 {
   "index": "Introduction",
-  "protocol": "🛠️ Protocol",
-  "integration": "🔮 Integration",
-  "tutorials": "📖 Tutorials",
-  "v1": "🌐 V1 Docs"
+  "protocol": "Protocol",
+  "integration": "Integration",
+  "---": {
+    "type": "separator",
+    "title": "Start Building"
+  },
+  "react-native": "React Native",
+  "nodejs": "NodeJS",
+  "tutorials": "Tutorials",
+  "v1": "V1 Docs"
 }
