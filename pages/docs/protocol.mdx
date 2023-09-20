@@ -2,4 +2,27 @@
 title: Protocol
 ---
 
+import Card, { Cards } from './../../components/Cards';
+import protocolDetails from './../../components/protocolDetails.json'
+
 # Protocol
+
+<br/>
+<picture style={{height: '300px'}}>
+    <source srcset="/diagrams/arch-1-light.png" media="(prefers-color-scheme: light)" />
+    <source srcset="/diagrams/arch-1-dark.png" media="(prefers-color-scheme: dark)" />
+    <img src="/diagrams/arch-1-dark.png" alt="Image" className="image" />
+</picture>
+
+<Cards
+num={3}
+children={Object.keys(protocolDetails).map((key, i) => (
+<Card
+    key={i}
+    title={protocolDetails[key].title}
+    description={protocolDetails[key].description}
+    icon={protocolDetails[key].icon}
+    href={protocolDetails[key].href}
+/>
+))}
+/>

@@ -27,7 +27,7 @@ export const AddIcon = (props: React.SVGProps<SVGSVGElement>) => {
                 </clipPath>
             </defs>
             <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="53.3" d="M341 221v240M221 341h240" />
-            <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 683)">
+            <g clipPath="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 683)">
                 <path fill="none" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="40" d="M378 54a236 236 0 1 0 74 71" />
             </g>
         </svg>

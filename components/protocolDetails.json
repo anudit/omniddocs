@@ -1,0 +1,38 @@
+{
+    "quickstart": {
+        "title": "ZK Proofs",
+        "icon": "✍️",
+        "description": "Learn how Omnid leverages ZK Proofs for anonymous signalling.",
+        "href": "/docs/protocol/zk-proofs"
+    },
+    "player": {
+        "title": "OAuth",
+        "icon": "🪪",
+        "description": "Learn how Omnid handles user authentication.",
+        "href": "/docs/protocol/oauth"
+    },
+    "create-a-livestream": {
+        "title": "Cross Chain",
+        "icon": "🔗",
+        "description": "Learn how Omnid operates on & communicates using multiple chains.",
+        "href": "/docs/protocol/cross-chain"
+    },
+    "stream-via-obs": {
+        "title": "Encryption",
+        "icon": "🔒",
+        "description": "Learn how Omnid handles storage and sharing of Encrypted Information.",
+        "href": "/docs/protocol/encryption"
+    },
+    "stream-via-browser": {
+        "title": "Proxy RPC",
+        "icon": "🚦",
+        "description": "Learn how Omnid secures and preserves privacy at the transaction layer.",
+        "href": "//docs/protocol/proxy-rpc"
+    },
+    "upload-a-video-asset": {
+        "title": "Connections",
+        "icon": "👥",
+        "description": "Learn how Omnid facilitates real world trust graphs using Connections.",
+        "href": "/docs/protocol/connections"
+    }
+}
