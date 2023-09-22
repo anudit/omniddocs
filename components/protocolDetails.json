@@ -1,35 +1,41 @@
 {
-    "quickstart": {
+    "zk-proofs": {
         "title": "ZK Proofs",
         "icon": "✍️",
         "description": "Learn how Omnid leverages ZK Proofs for anonymous signalling.",
         "href": "/docs/protocol/zk-proofs"
     },
-    "player": {
-        "title": "OAuth",
+    "auth": {
+        "title": "Authentication",
         "icon": "🪪",
         "description": "Learn how Omnid handles user authentication.",
-        "href": "/docs/protocol/oauth"
+        "href": "/docs/protocol/auth"
     },
-    "create-a-livestream": {
+    "cross-chain": {
         "title": "Cross Chain",
         "icon": "🔗",
         "description": "Learn how Omnid operates on & communicates using multiple chains.",
         "href": "/docs/protocol/cross-chain"
     },
-    "stream-via-obs": {
+    "encryption": {
         "title": "Encryption",
         "icon": "🔒",
-        "description": "Learn how Omnid handles storage and sharing of Encrypted Information.",
+        "description": "Learn how Omnid securely shares encrypted data.",
         "href": "/docs/protocol/encryption"
     },
-    "stream-via-browser": {
+    "vault": {
+        "title": "Vault",
+        "icon": "🛡️",
+        "description": "Learn how the Vault handles storage and sharing of Encrypted Information.",
+        "href": "/docs/protocol/vault"
+    },
+    "proxy-rpc": {
         "title": "Proxy RPC",
         "icon": "🚦",
         "description": "Learn how Omnid secures and preserves privacy at the transaction layer.",
-        "href": "//docs/protocol/proxy-rpc"
+        "href": "/docs/protocol/proxy-rpc"
     },
-    "upload-a-video-asset": {
+    "connections": {
         "title": "Connections",
         "icon": "👥",
         "description": "Learn how Omnid facilitates real world trust graphs using Connections.",

@@ -1,8 +1,9 @@
 {
     "zk-proofs": "ZK Proofs",
-    "oauth": "OAuth",
+    "auth": "Authentication",
     "cross-chain": "Cross Chain",
     "encryption": "Encryption",
     "proxy-rpc": "Proxy RPC",
+    "vault": "Vault",
     "connections": "Connections"
 }
