@@ -1,6 +1,7 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 import { useSpring } from 'react-spring';
+import { Button } from 'nextra/components';
 
 export function Cobe() {
   const canvasRef = useRef();
@@ -75,9 +76,6 @@ export function Cobe() {
         textIndent: '.3em',
         margin: 'auto',
       }}>Omnid</h1>
-      <span style={{ fontSize: '1.2em' }}>
-        
-      </span>
     </div>
     <canvas
       ref={canvasRef}

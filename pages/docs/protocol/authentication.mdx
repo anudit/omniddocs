@@ -1,0 +1,43 @@
+---
+title: Authentication
+---
+
+import { Callout } from 'nextra/components'
+
+# Authentication
+
+## Introduction
+
+### Online
+<br/>
+<picture>
+    <source srcSet="/diagrams/signin-1-light.png" media="(prefers-color-scheme: light)" />
+    <source srcSet="/diagrams/signin-1-dark.png" media="(prefers-color-scheme: dark)" />
+    <img src="/diagrams/signin-1-dark.png" alt="Image" className="image" />
+</picture>
+
+### Offline
+<br/>
+<picture>
+    <source srcSet="/diagrams/signin-2-light.png" media="(prefers-color-scheme: light)" />
+    <source srcSet="/diagrams/signin-2-dark.png" media="(prefers-color-scheme: dark)" />
+    <img src="/diagrams/signin-2-dark.png" alt="Image" className="image" />
+</picture>
+
+## Types of Authentication
+
+<Callout type="info" emoji="ℹ️">
+  Note: You don't need to go this route if you just want the proof of a single attribute. [Learn More]()
+</Callout>
+
+### Public Profile `public`
+
+This allows you get the public profile of user like their Ethereum Address, Humaness Metrics etc. Compatible with [SIWE](https://login.xyz/) Standard.
+
+### ZK Attributes `private`
+
+This allows you get the ZK Commitment of user to access the various attributes of their persona.
+
+### Additional Data `data`
+
+You can request specific data items linked to the user from the vault only if the user permits.

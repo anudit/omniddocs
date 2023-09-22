@@ -398,7 +398,7 @@
 	"romance scam": "A Romance scam involves a criminal assuming a fake identity in order to gain a victim's affection, which often leads to financial loss through manipulation and deception.",
 	"ropsten": "Ropsten is the primary Ethereum testnet (test network) where blockchain developers can test their smart contract code in a live setting without spending actual money.",
 	"routing attack": "An attack on the Internet Service Provider level to affect uptime or participation in a web-enabled system, such as a blockchain.",
-	"rpc": "The Remote Procedure Call is a protocol that, while not blockchain-specific, is used to transfer data between endpoints. You may often see it referred to as JSON-RPC, which is its full name.",
+	"rpc": "The Remote Procedure Call (RPC) is a protocol that, while not blockchain-specific, is used to transfer data between computers. You may often see it referred to as JSON-RPC, which is its full name. In the context of blockchain decentralized applications (dApps), it is used to interact with the blockchain network, query data, and send transactions.",
 	"rug pull": "A Rug Pull occurs when an individual or group deletes their online foot print after accepting investor funds. It is the same as an exit scam where the goal is to run off with investor funds.",
 	"satoshi nakamoto": "A pseudonymous individual or entity who created the Bitcoin protocol, solving the digital currency issue of the “double spend.” Nakamoto first published their white paper describing the project in 2008 and the first Bitcoin software was released one year later.",
 	"satoshis/sats": "the smallest denomination of BTC, equal to 0.00000001 bitcoin. Satoshis are named after Bitcoin's pseudonymous creator, Satoshi Nakamoto.",
