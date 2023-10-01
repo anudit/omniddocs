@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29 23.1 265.2 192.4">
+  <circle cx="185" cy="225" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="185" cy="265" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="185" cy="305" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="145" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="185" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="225" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="265" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="305" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="345" cy="185" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="345" cy="225" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="345" cy="265" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="345" cy="305" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="185" cy="345" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="185" cy="385" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="345" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="385" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <circle cx="265" cy="425" r="5" fill="#181818" transform="rotate(62 343.4 120.8)"/>
+  <g fill="#0cd02d">
+    <path d="m142.6 54 5.1 10.1h-10.3l5.2-10.2Z"/>
+    <path d="M141.3 63h3v69h-3z"/>
+  </g>
+  <g fill="#0486ff">
+    <path d="m175 120.9-6.5 9.4-5-9 11.4-.4Z"/>
+    <path d="m166.3 124.2 1.5 2.7-18.8 10.4-1.5-2.7z"/>
+  </g>
+</svg>

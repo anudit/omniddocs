@@ -95,3 +95,7 @@ html[class~=dark] .dark\:nx-bg-dark {
 html[class~=dark] .svgThemed {
   filter: invert(1);
 }
+
+html[class~=dark] .themedImage {
+  filter: invert(1);
+}

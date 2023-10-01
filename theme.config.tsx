@@ -130,19 +130,19 @@ const config: DocsThemeConfig = {
       }
       if (type === 'separator') return (<div>{title}</div>)
 
-      if (route === '/docs' || route === '') return (<><HomeIcon style={{
+      if (route === '/get-started' || route === '') return (<><HomeIcon style={{
         ...iconStyle,
         strokeWidth: '1.5px'
       }} />{title}</>)
-      if (route === '/docs/protocol') return (<div style={{ display: 'flex', flexDirection: 'row', }}><InfinityIcon style={{
+      if (route === '/protocol') return (<div style={{ display: 'flex', flexDirection: 'row', }}><InfinityIcon style={{
         ...iconStyle,
         strokeWidth: '40px',
       }} />{title}</div>)
-      if (route === '/docs/integration') return (<div style={{ display: 'flex', flexDirection: 'row', }}><AddIcon style={{
+      if (route === '/integration') return (<div style={{ display: 'flex', flexDirection: 'row', }}><AddIcon style={{
         ...iconStyle,
         strokeWidth: '40px',
       }} />{title}</div>)
-      if (route === '/docs/react-native') return (
+      if (route === '/react-native') return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <ReactNativeIcon style={{
@@ -155,7 +155,7 @@ const config: DocsThemeConfig = {
           </Tag>
         </div>
       )
-      if (route === '/docs/nodejs') return (
+      if (route === '/nodejs') return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <NodeJsIcon style={{
@@ -168,13 +168,13 @@ const config: DocsThemeConfig = {
           </Tag>
         </div>
       )
-      if (route === '/docs/tutorials') return (
+      if (route === '/tutorials') return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <BookIcon style={{ ...iconStyle, strokeWidth: '0.5px', height: '20px', marginRight: '6px', marginTop: '0px', marginLeft: '-2px' }} />
           {title}
         </div>
       )
-      if (route === '/docs/v1') return (
+      if (route === '/v1') return (
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <VersionIcon style={{ ...iconStyle, strokeWidth: '0.5px', marginTop: '3px', height: '14px', marginRight: '10px' }} />
           {title}

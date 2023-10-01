@@ -7,10 +7,6 @@
       "layout": "raw"
     }
   },
-  "docs": {
-    "type": "page",
-    "title": "Documentation"
-  },
   "showcase": {
     "display": "hidden",
     "type": "page",
@@ -27,8 +23,9 @@
       "typesetting": "article"
     }
   },
-  "home": {
-    "title": "Home"
+  "get-started": {
+    "title": "Get Started",
+    "type": "doc"
   },
   "protocol": {
     "title": "Protocol"
