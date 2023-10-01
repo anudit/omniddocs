@@ -26,5 +26,26 @@
       "timestamp": false,
       "typesetting": "article"
     }
+  },
+  "home": {
+    "title": "Home"
+  },
+  "protocol": {
+    "title": "Protocol"
+  },
+  "integration": {
+    "title": "Integration"
+  },
+  "react-native": {
+    "title": "React Native"
+  },
+  "nodejs": {
+    "title": "NodeJS"
+  },
+  "tutorials": {
+    "title": "Tutorials"
+  },
+  "v1": {
+    "title": "V1 Docs"
   }
 }

@@ -70,4 +70,11 @@ export const VersionIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGS
     )
 }
 
-
+export const ExternalIcon = (props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 512 512" {...props}>
+            <path d="M488 273a24 24 0 0 0-24 24v96a70 70 0 0 1-71 71H119a70 70 0 0 1-71-71V119a70 70 0 0 1 71-71h96a24 24 0 1 0 0-48h-96A119 119 0 0 0 0 119v274a119 119 0 0 0 119 119h274a119 119 0 0 0 119-119v-96a24 24 0 0 0-24-24z" />
+            <path d="M487 0H338a24 24 0 0 0-24 24c0 13 11 24 25 24h91L239 239a24 24 0 0 0 0 34 24 24 0 0 0 34 0L464 82v92a24 24 0 0 0 48 0V25a25 25 0 0 0-25-25z" />
+        </svg>
+    )
+}

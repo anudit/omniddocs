@@ -4,6 +4,7 @@ title: Subgraph
 
 import { ApolloSandbox } from '@apollo/sandbox/react';
 import { Button } from 'nextra/components';
+import { ExternalIcon } from './../../../components/icons'
 
 # Subgraph - GraphQL API
 
@@ -21,11 +22,14 @@ Subgraph endpoints: Queries (HTTP): https://api.studio.thegraph.com/query/1649/g
 <Button 
 onClick={()=>{
     window.open('https://studio.apollographql.com/sandbox/explorer?hideCookieToggle=true&initialRequestQueryPlan=false&parentSupportsSubscriptions=true&runTelemetry=true&shouldDefaultAutoupdateSchema=true&version=2.5.1')
-}}>
+}}
+style={{ display: 'flex', flexDirection: 'row', width: '180px', alignItems: 'center', paddingLeft: '10px', paddingRight: '10px'}}
+>
 Open in New Tab
+<ExternalIcon style={{width: '18px', fill:'currentColor', marginLeft: '10px'}}/>
 </Button>
 <br/>
-<br/>
+
 <div className="GraphQLSandbox">
 <ApolloSandbox
     initialEndpoint='https://api.studio.thegraph.com/query/1649/groupmanager/version/latest'

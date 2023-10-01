@@ -87,3 +87,11 @@ html[class~=dark] .dark\:nx-bg-dark {
   border: 1px solid #e5e7eb;
   border-radius: 10px;
 }
+
+.svgThemed {
+  padding: 20px;
+}
+
+html[class~=dark] .svgThemed {
+  filter: invert(1);
+}

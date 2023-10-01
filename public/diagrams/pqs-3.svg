@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12.2 14.1 278.4 210">
+  <circle cx="115" cy="15" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="115" cy="65" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="15" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="65" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="30" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="80" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="115" cy="115" r="5" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="115" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="130" r="5" transform="rotate(90 148.2 152.4)"/>
+  <path fill="#0486ff" d="M175.4 118.4v1.2h-34.7v-1.2z"/>
+  <path fill="#0486ff" d="m180.8 119-6.2 2.9v-5.6l6.2 2.8Z"/>
+  <g transform="matrix(-.83528 .52194 -.64365 -1.03007 426 198.3)">
+    <ellipse cx="165" cy="83.4" rx="4.4" ry="4.7" transform="rotate(-52.4 201 114.5) skewX(10.7)"/>
+    <g fill="#0cd02d">
+      <path d="M163.9 120h1.2v36.6h-1.2z"/>
+      <path d="m164.6 115.7 2.8 5h-5.7l2.9-5Z"/>
+    </g>
+    <g fill="#0cd02d">
+      <path d="m159.8 197.8.5.9 41.2-15-.5-.8z"/>
+      <path d="m155.3 200 6.7.1-2.4-4.2-4.3 4.1Z"/>
+    </g>
+  </g>
+  <g fill="#0486ff">
+    <path d="M131.3 69.4v-1.2H166v1.2z"/>
+    <path d="M125.9 68.8 132 66v5.7l-6.2-2.9Z"/>
+  </g>
+  <circle cx="115" cy="165" r="5" fill="none" stroke="#000" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="115" cy="215" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="165" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="215" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="180" r="5" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="230" r="5" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="115" cy="265" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="15" cy="265" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="65" cy="280" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="18.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="68.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="165" cy="33.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="118.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="165" cy="133.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="168.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="218.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="165" cy="183.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="165" cy="233.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="215" cy="268.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <circle cx="165" cy="283.4" r="5" fill="rgba(0,0,0,.44)" transform="rotate(90 148.2 152.4)"/>
+  <g fill="#0486ff">
+    <path d="M80.7 69.4v-1.2h34.7v1.2z"/>
+    <path d="m75.3 68.8 6.2-2.8v5.6l-6.2-2.8Z"/>
+  </g>
+</svg>
