@@ -33,6 +33,10 @@
   "integration": {
     "title": "Integration"
   },
+  "---": {
+    "type": "separator",
+    "title": "Start Building"
+  },
   "react-native": {
     "title": "React Native"
   },
