@@ -6,9 +6,8 @@ import withPWA from 'next-pwa';
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx',
-  latex: true,
-  flexsearch: {
-    codeblocks: false
+  search: {
+    codeblocks: true
   },
   defaultShowCopyCode: true
 })

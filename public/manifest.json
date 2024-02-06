@@ -1,0 +1,42 @@
+{
+    "theme_color": "#007bff",
+    "background_color": "#000000",
+    "icons": [
+        {
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "icon512_maskable.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "icon512_rounded.png",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "any",
+    "display": "standalone",
+    "dir": "auto",
+    "lang": "en-GB",
+    "name": "Omnid Docs",
+    "short_name": "Omnid Docs",
+    "start_url": "https://docs.omnid.io/",
+    "scope": "https://docs.omnid.io/",
+    "description": "Documentation for building on Omnid.io",
+    "id": "Documentation for building on Omnid.io",
+    "screenshots": [
+        {
+            "src": "/screenshot1.png",
+            "type": "image/png",
+            "sizes": "1170x2532",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/screenshot2.png",
+            "type": "image/png",
+            "sizes": "1868x1074",
+            "form_factor": "narrow"
+        }
+    ]
+}

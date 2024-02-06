@@ -1,5 +1,3 @@
-import { AddIcon, BookIcon, HomeIcon, InfinityIcon, NodeJsIcon, ReactNativeIcon, VersionIcon } from '@components/icons';
-import Tag from '@components/tag';
 import { useRouter } from 'next/router';
 import type { DocsThemeConfig } from 'nextra-theme-docs';
 import { useConfig } from 'nextra-theme-docs';
@@ -41,14 +39,14 @@ const config: DocsThemeConfig = {
   },
   chat: { link: "https://discord.gg/MFtmrng9J7" },
   docsRepositoryBase: 'https://github.com/anudit/omniddocs/tree/main',
-  useNextSeoProps() {
-    const { asPath } = useRouter()
-    if (asPath !== '/') {
-      return {
-        titleTemplate: '%s – Omnid'
-      }
-    }
-  },
+  // useNextSeoProps() {
+  //   const { asPath } = useRouter()
+  //   if (asPath !== '/') {
+  //     return {
+  //       titleTemplate: '%s – Omnid'
+  //     }
+  //   }
+  // },
   logo,
   head: function useHead() {
     const { title } = useConfig()
@@ -83,6 +81,10 @@ const config: DocsThemeConfig = {
         <meta name="og:image" content={socialCard} />
         <meta name="apple-mobile-web-app-title" content="Omnid" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+        <link rel="manifest" href="/manifest.json" />
+
       </>
     )
   },
@@ -115,79 +117,18 @@ const config: DocsThemeConfig = {
     ),
   },
   editLink: {
-    text: 'Edit this page on GitHub →'
+    content: 'Edit this page on GitHub →'
   },
   feedback: {
     content: 'Question? Give us feedback →',
     labels: 'feedback'
   },
   sidebar: {
-    titleComponent({ title, type, route }) {
-      const iconStyle = {
-        marginTop: '2px', marginRight: '10px', strokeWidth: '4px', height: '16px',
-        fill: 'currentColor',
-        stroke: 'currentColor'
-      }
-      if (type === 'separator') return (<div>{title}</div>)
-
-      if (route === '/get-started' || route === '') return (<><HomeIcon style={{
-        ...iconStyle,
-        strokeWidth: '1.5px'
-      }} />{title}</>)
-      if (route === '/protocol') return (<div style={{ display: 'flex', flexDirection: 'row', }}><InfinityIcon style={{
-        ...iconStyle,
-        strokeWidth: '40px',
-      }} />{title}</div>)
-      if (route === '/integration') return (<div style={{ display: 'flex', flexDirection: 'row', }}><AddIcon style={{
-        ...iconStyle,
-        strokeWidth: '40px',
-      }} />{title}</div>)
-      if (route === '/react-native') return (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <ReactNativeIcon style={{
-              marginTop: '3px', marginRight: '10px', height: '14px',
-            }} />
-            {title}
-          </div>
-          <Tag>
-            Soon
-          </Tag>
-        </div>
-      )
-      if (route === '/nodejs') return (
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <NodeJsIcon style={{
-              marginTop: '2px', marginRight: '10px', height: '16px',
-            }} />
-            {title}
-          </div>
-          <Tag>
-            Soon
-          </Tag>
-        </div>
-      )
-      if (route === '/tutorials') return (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <BookIcon style={{ ...iconStyle, strokeWidth: '0.5px', height: '20px', marginRight: '6px', marginTop: '0px', marginLeft: '-2px' }} />
-          {title}
-        </div>
-      )
-      if (route === '/v1') return (
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <VersionIcon style={{ ...iconStyle, strokeWidth: '0.5px', marginTop: '3px', height: '14px', marginRight: '10px' }} />
-          {title}
-        </div>
-      )
-
-      return <p style={{ paddingLeft: '6px', paddingRight: '6px' }}>{title}</p>
-    },
     defaultMenuCollapseLevel: 2,
     toggleButton: true
   },
   footer: {
-    text: (
+    content: (
       <div className="flex w-full flex-col items-center sm:items-start">
         <div>
           <a
@@ -212,10 +153,10 @@ const config: DocsThemeConfig = {
   },
   banner: {
     key: "isBannerOpen",
-    text: () => {
+    content: () => {
       return (
         <>
-          ✨ Learn more about <a href="https://blog.cupoc.space/" target="_blank"> Convo Space & Omnid →</a>
+          ✨ Learn more about <a href="https://blog.cupoc.space/" target="_blank">Omnid →</a>
         </>);
     },
   },

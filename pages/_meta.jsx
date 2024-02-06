@@ -1,7 +1,9 @@
-{
+import Seperator from '../components/Seperator'
+
+export default {
   "index": {
     "type": "page",
-    "title": "Nextra",
+    "title": <Seperator>Omnid</Seperator>,
     "display": "hidden",
     "theme": {
       "layout": "raw"
@@ -10,7 +12,7 @@
   "showcase": {
     "display": "hidden",
     "type": "page",
-    "title": "Showcase",
+    "title": <Seperator>Showcase</Seperator>,
     "theme": {
       "typesetting": "article",
       "layout": "full"
@@ -24,29 +26,29 @@
     }
   },
   "get-started": {
-    "title": "Get Started",
+    "title": <Seperator>Get Started</Seperator>,
     "type": "doc"
   },
   "protocol": {
-    "title": "Protocol"
+    "title": <Seperator>Protocol</Seperator>,
   },
   "integration": {
-    "title": "Integration"
+    "title": <Seperator>Integration</Seperator>,
   },
   "---": {
     "type": "separator",
-    "title": "Start Building"
+    "title": <Seperator>Start Building</Seperator>,
   },
   "react-native": {
-    "title": "React Native"
+    "title": <Seperator>React Native</Seperator>,
   },
   "nodejs": {
-    "title": "NodeJS"
+    "title": <Seperator>NodeJS</Seperator>,
   },
   "tutorials": {
-    "title": "Tutorials"
+    "title": <Seperator>Tutorials</Seperator>,
   },
   "v1": {
-    "title": "V1 Docs"
+    "title": <Seperator>V1 Docs</Seperator>,
   }
 }
