@@ -5,5 +5,6 @@ export default {
     "encryption": "Encryption",
     "proxy-rpc": "Proxy RPC",
     "vault": "Vault",
-    "connections": "Connections"
+    "connections": "Connections",
+    "HOPE": "HOPE"
 }

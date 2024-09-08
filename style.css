@@ -88,3 +88,7 @@ html[class~=dark] .svgThemed {
 html[class~=dark] .themedImage {
   filter: invert(1);
 }
+
+.nextra-breadcrumb>div {
+  display: flex;
+}

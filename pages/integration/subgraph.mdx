@@ -8,13 +8,12 @@ import { ExternalIcon } from './../../components/icons'
 
 # Subgraph - GraphQL API
 
-## Arbitrum Goerli
+## Optimism Sepolia
 
-Build completed: `QmaCz4BSXxTicXE6TmPuPrvHxAAtZ5A9vdqHjzvagDMsqW`
+Deployed to https://thegraph.com/studio/subgraph/omnid-testnet
 
-Deployed to https://thegraph.com/studio/subgraph/groupmanager
-
-Subgraph endpoints: Queries (HTTP): https://api.studio.thegraph.com/query/1649/groupmanager/v1.1
+Subgraph endpoints:
+Queries (HTTP): https://api.studio.thegraph.com/query/1649/omnid-testnet/version/latest
 
 ## Playground
 
@@ -32,7 +31,7 @@ Open in New Tab
 
 <div className="GraphQLSandbox">
 <ApolloSandbox
-    initialEndpoint='https://api.studio.thegraph.com/query/1649/groupmanager/version/latest'
+    initialEndpoint='https://api.studio.thegraph.com/query/1649/omnid-testnet/version/latest'
     persistExplorerState={true}
     intialState={{
         document: `
@@ -46,10 +45,6 @@ Open in New Tab
                     members {
                         index
                         identityCommitment
-                    }
-                    verifiedProofs {
-                        signal
-                        timestamp
                     }
                     timestamp
                     admin

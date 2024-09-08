@@ -20,6 +20,19 @@ export default function titleComponent({ children }) {
         ...iconStyle,
         strokeWidth: '40px',
     }} />{children}</div>)
+    if (children === 'React') return (
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <ReactNativeIcon style={{
+                    marginTop: '3px', marginRight: '10px', height: '14px',
+                }} />
+                {children}
+            </div>
+            <Tag>
+                Soon
+            </Tag>
+        </div>
+    )
     if (children === 'React Native') return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
             <div style={{ display: 'flex', flexDirection: 'row' }}>

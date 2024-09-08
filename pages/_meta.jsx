@@ -39,6 +39,9 @@ export default {
     "type": "separator",
     "title": <Seperator>Start Building</Seperator>,
   },
+  "react": {
+    "title": <Seperator>React</Seperator>,
+  },
   "react-native": {
     "title": <Seperator>React Native</Seperator>,
   },
