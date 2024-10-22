@@ -1,28 +1,35 @@
-import { optimismSepolia } from 'viem/chains';
-import { http, createPublicClient, formatEther } from 'viem'
-import { useEffect, useState } from 'react';
+import { optimismSepolia } from "viem/chains";
+import { http, createPublicClient, formatEther } from "viem";
+import { useEffect, useState } from "react";
 
-export const publicClient = createPublicClient({
-    //@ts-expect-error
-    chain: optimismSepolia,
-    transport: http('https://rpc.ankr.com/optimism_sepolia'),
-})
+export const publicClientOp = createPublicClient({
+  chain: optimismSepolia,
+  transport: http("https://rpc.ankr.com/optimism_sepolia"),
+});
 
-const Balance = ({ address }) => {
+export const publicClientArb = createPublicClient({
+  chain: optimismSepolia,
+  transport: http("https://arbitrum-sepolia.blockpi.network/v1/rpc/public"),
+});
 
-    const [bal, setBal] = useState('0');
-    useEffect(() => {
-        publicClient.getBalance({
-            address: address
-        }).then((balance) => {
-            setBal(formatEther(balance));
-        })
-    }, [])
+const Balance = ({
+  network,
+  address,
+}: {
+  network: "op" | "arb";
+  address: string;
+}) => {
+  const [bal, setBal] = useState("0");
+  useEffect(() => {
+    let c = network == "op" ? publicClientOp : publicClientArb;
+    c.getBalance({
+      address: address as `0x${string}`,
+    }).then((balance) => {
+      setBal(formatEther(balance));
+    });
+  }, []);
 
-
-    return (
-        <span>{bal} ETH</span>
-    )
-}
+  return <span>{bal} ETH</span>;
+};
 
 export default Balance;

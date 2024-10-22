@@ -15,7 +15,7 @@ const withNextra = nextra({
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
 };
 
 export default withPlugins(
