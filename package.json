@@ -15,15 +15,15 @@
     "fumadocs-mdx": "11.0.0",
     "fumadocs-ui": "14.0.2",
     "lucide-react": "^0.453.0",
-    "next": "15.0.0",
+    "next": "15.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "viem": "^2.21.33"
   },
   "devDependencies": {
     "@types/mdx": "^2.0.13",
-    "@types/node": "22.7.8",
-    "@types/react": "^18.3.11",
+    "@types/node": "22.7.9",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",

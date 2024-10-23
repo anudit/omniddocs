@@ -42,8 +42,8 @@ This SDK is only for the Web, React-Native based users should use [`zk-expo`](/e
 ## Making Proofs
 
 ### `useProof` Hook
-Example,
 
+Example,
 ```tsx
 import { useProof } from '@omnid/react';
 const rsa = {
@@ -53,6 +53,10 @@ const rsa = {
 const { downloaded, downloadProgress, makeProof } = useProof(rsa, { gzippedZkey: true });
 const { proof, publicSignals, calldata, timeTaken } = await makeProof(input);
 ```
+
+<Callout type="info">
+We use a CORS proxy to bypass few CORS errors while downloading assets on a Website.
+</Callout>
 
 Reference,
 ```tsx

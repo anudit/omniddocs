@@ -1,5 +1,5 @@
 {
   "title": "Tutorials",
   "icon": "Book",
-  "pages": ["circom", "halo2", "noir", "web", "solidity", "glossary"]
+  "pages": ["circom", "noir", "halo2", "web", "solidity", "glossary"]
 }

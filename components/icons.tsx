@@ -32,6 +32,7 @@ export const ExpoIcon = forwardRef<
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill={"royalblue"}
+      ref={ref}
       {...props}
     >
       <path d="M0 20c0 .6.2 1.1.7 1.9.6.8 1.6 1.3 2.3.5.5-.5 5.8-9.7 8.4-13.3a.8.8 0 0 1 1.2 0c2.6 3.6 7.9 12.8 8.4 13.3.7.8 1.7.3 2.3-.5.5-.9.7-1.5.7-2S15.7 4 15 2.6c-.9-1.2-1.1-1.5-2.5-1.5h-1c-1.4 0-1.6.3-2.4 1.5a414 414 0 0 0-9.1 17Z" />
@@ -50,6 +51,7 @@ export const NodeJsIcon = forwardRef<
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 289"
+      ref={ref}
       {...props}
     >
       <path
@@ -61,3 +63,24 @@ export const NodeJsIcon = forwardRef<
 });
 
 ReactNativeIcon.displayName = "NodeJsIcon";
+
+export const DiscordIcon = forwardRef<
+  SVGSVGElement,
+  JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+>((props, ref) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      ref={ref}
+      fill="none"
+      stroke="currentColor"
+      {...props}
+    >
+      <path d="M185 203c-29 0-54 27-54 59s25 59 54 59c30 0 54-26 54-59s-24-59-54-59zm0 88c-13 0-24-13-24-29s11-29 24-29 24 13 24 29-11 29-24 29zm142-88c-30 0-54 27-54 59s24 59 54 59c29 0 54-26 54-59s-25-59-54-59zm0 88c-13 0-24-13-24-29s11-29 24-29 24 13 24 29-11 29-24 29z" />
+      <path d="M512 363c0-7-9-157-66-247a15 15 0 0 0-5-4c-70-45-118-45-120-45-6 0-11 3-14 8l-24 46a418 418 0 0 0-27 0h-27l-24-46c-3-5-8-8-14-8-2 0-50 0-120 45a15 15 0 0 0-5 4C9 206 0 356 0 363a15 15 0 0 0 4 10 226 226 0 0 0 153 72 15 15 0 0 0 12-5l40-51a416 416 0 0 0 47 3c16 0 32-1 47-3l40 51a15 15 0 0 0 12 5h1c87 0 150-69 152-72a15 15 0 0 0 4-10zm-150 52-25-32c38-7 72-21 99-39a15 15 0 1 0-17-25c-39 27-99 43-163 43s-124-16-163-43a15 15 0 0 0-17 25c27 18 61 32 99 39l-25 32c-59-3-106-44-120-57 3-29 15-149 60-223 44-28 78-35 92-38l15 28c-34 5-65 14-92 26a15 15 0 0 0 13 27c38-18 87-27 138-27s100 9 138 27a15 15 0 0 0 6 2 15 15 0 0 0 7-29c-27-12-58-21-92-26l15-27c14 2 48 9 92 37 45 74 57 194 60 223-14 13-61 54-120 57z" />
+    </svg>
+  );
+});
+
+ReactNativeIcon.displayName = "DiscordIcon";

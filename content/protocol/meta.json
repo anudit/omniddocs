@@ -1,12 +1,14 @@
 {
   "title": "Protocol",
   "pages": [
+    "overview",
     "zk-proofs",
     "authentication",
     "cross-chain",
     "encryption",
     "proxy-rpc",
     "vault",
+    "function-cloud",
     "connections",
     "alchemy"
   ]

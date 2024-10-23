@@ -28,13 +28,13 @@ We already have some sample files ready for you that you'll need to get your cir
 
 Next, create a file in the root called `metro.config.js` so that expo can pick up the `dat` extension.
 
-```js {6} title="metro.config.js"
+```js title="metro.config.js"
 const { getDefaultConfig } = require("expo/metro-config");
 const path = require("path");
 
 const config = getDefaultConfig(__dirname);
 
-config.resolver.assetExts = ["dat"];
+config.resolver.assetExts = ["dat"]; // [!code highlight]
 
 module.exports = config;
 ```
@@ -171,23 +171,27 @@ export const NoirSection = () => {
 - You should now be able to click "Setup Noir SRS" and setup the srs.
 - `noirSetupSrs` only needs to be called once throughout your app, you can do this in the background when you app opens.
 
+</Step>
+
+<Step>
+
 #### Make the Proof
 
-```tsx {7-14, 44-45} title="App.tsx"
+```tsx title="App.tsx"
 export const NoirSection = () => {
   const [fileUri, setFileUri] = useState<string | null>(null);
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
 
   // useEffect, downloadFile, setupSrs functions
 
-  async function makeNoirProof(type: 'plonk'|'honk') {
-    let { success, proof, vk } = await ZkExpo.noirProve(
-      "17",
-      BYTECODE,
-      ["0x2", "0x2"],
-      type,
-    );
-  }
+  async function makeNoirProof(type: 'plonk'|'honk') { // [!code highlight]
+    let { success, proof, vk } = await ZkExpo.noirProve( // [!code highlight]
+      "17", // [!code highlight]
+      BYTECODE, // [!code highlight]
+      ["0x2", "0x2"], // [!code highlight]
+      type, // [!code highlight]
+    ); // [!code highlight]
+  } // [!code highlight]
 
   return (
     <View
@@ -217,8 +221,8 @@ export const NoirSection = () => {
         />
       )}
       <Button title="Setup Noir SRS" onPress={setupSrs} />
-      <Button title="Make Noir Plonk Proof" onPress={()=>{makeNoirProof('plonk')}} />
-      <Button title="Make Noir Honk Proof" onPress={()=>{makeNoirProof('honk')}} />
+      <Button title="Make Noir Plonk Proof" onPress={()=>{makeNoirProof('plonk')}} /> // [!code highlight]
+      <Button title="Make Noir Honk Proof" onPress={()=>{makeNoirProof('honk')}} /> // [!code highlight]
     </View>
   );
 };

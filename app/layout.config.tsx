@@ -1,5 +1,8 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
+import { LucideGithub, LucideTwitter } from "lucide-react";
+import { createElement } from "react";
+import { DiscordIcon } from "@/components/icons";
 
 /**
  * Shared layout configurations
@@ -17,7 +20,6 @@ export const baseOptions: BaseLayoutProps = {
       </div>
     ),
   },
-  githubUrl: "https://github.com/anudit/omniddocs",
   links: [
     {
       text: "Home",
@@ -28,6 +30,24 @@ export const baseOptions: BaseLayoutProps = {
       text: "Documentation",
       url: "/",
       active: "nested-url",
+    },
+    {
+      text: "Discord",
+      url: "https://discord.gg/xN4hK3uQEV",
+      active: "nested-url",
+      // icon: createElement(DiscordIcon),
+    },
+    {
+      text: "Twitter",
+      url: "https://x.com/ProjectOmnid",
+      active: "nested-url",
+      icon: createElement(LucideTwitter),
+    },
+    {
+      text: "GitHub",
+      url: "https://github.com/anudit/omniddocs",
+      active: "nested-url",
+      icon: createElement(LucideGithub),
     },
   ],
 };
