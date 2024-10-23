@@ -50,18 +50,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 
       <body className="flex flex-col min-h-screen">
         <RootProvider>
-          <span
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: -1,
-              height: "64rem",
-              maxHeight: "100vh",
-              overflow: "hidden",
-              backgroundImage:
-                "radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsl(218.3deg 100% 65.25% / 10%) 39.4%, transparent 100%)",
-            }}
-          ></span>
           <DocsLayout
             tree={source.pageTree}
             {...baseOptions}

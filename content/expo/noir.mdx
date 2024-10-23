@@ -1,10 +1,8 @@
 ---
 title: Noir Guide
 ---
+In this guide we'll talk about how to run Noir (PLONK & HONK) Circuits on your iOS/Android devices. We won't go in details about how to [setup and build your Noir Circuits](/tutorials/noir) or how to [make an Expo App](https://docs.expo.dev/tutorial/create-your-first-app/).
 
-import { Callout } from 'fumadocs-ui/components/callout';
-
-In this guide we'll talk about how to run Noir (PLONK & HONK) Circuits on your iOS/Android devices.
 
 ## Quickstart
 
@@ -20,10 +18,9 @@ and then add our expo module and relevant libs.
 bunx expo install zk-expo expo-file-system @react-native-async-storage/async-storage
 ```
 
-We won't go in details about how to setup and build your Noir Circuits or how to make an Expo App. You can find a tutorial on that here and here.
 
 We already have some sample files ready for you that you'll need to get your circuits running, create a directory `/public` in the project root and put these files in it.
-- [srs.dat](/)
+- [srs.dat](https://cdn.omnid.io/share/Dc_OClY0)
 - Bytecode
   ```js
   H4sIAAAAAAAA/7VUSQ7DIAyEhKa99ic2SzC3fqWo5P8vqBopUCHCLWYkZIQlMx4vUhxQ+7mJM+ZsX9kaWK1NXic0+AYdIjmwLq6EhI7cR5MxiSz5EIOHgNYk3FwwGxyoY8E1oGTkNfHxgqKj7OgpGz3hGpCTt2zqfuLPRXqUEPOAuIq5+UfkrfhrBGJg0yrB27Sq4Vnfe0P4f7xnu3R8BY/9TPn+ZRa4bNd685a/VOVfKi6SnwvW+fYm/9nR5wcPIDK6OgYAAA==
@@ -46,6 +43,8 @@ module.exports = config;
 ### Running the circuits
 
 <Steps>
+
+<Step>
 
 #### Setup SRS
 
@@ -226,6 +225,8 @@ export const NoirSection = () => {
 ```
 
 Voila 🥳 You just made a Noir proof.
+
+</Step>
 
 </Steps>
 

@@ -31,7 +31,11 @@ const Balance = ({
     });
   }, []);
 
-  return <>{bal} ETH</>;
+  return (
+    <>
+      {bal} ETH, good for {Math.floor(parseFloat(bal) / 0.0000312453)} txns.
+    </>
+  );
 };
 
 export default Balance;

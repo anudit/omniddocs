@@ -3,6 +3,145 @@ title: React
 icon: React
 ---
 
-<Callout type="warning" emoji="🚧">
-  In Progress.
-</Callout>
+## Installation
+
+<Tabs items={[ 'bun', 'pnpm','yarn', 'npm']} groupId="selected-pkg-manager" persist>
+  <Tab value="bun">
+
+    ```sh
+    bun i @omnid/react
+    ```
+
+  </Tab>
+  <Tab value="pnpm">
+
+    ```sh
+    pnpm i --save @omnid/react
+    ```
+
+  </Tab>
+  <Tab value="yarn">
+
+    ```sh
+    yarn add @omnid/react
+    ```
+
+  </Tab>
+  <Tab value="npm">
+
+    ```sh
+    npm i --save @omnid/react
+    ```
+
+  </Tab>
+</Tabs>
+
+This SDK is only for the Web, React-Native based users should use [`zk-expo`](/expo/circom) instead.
+
+
+## Making Proofs
+
+### `useProof` Hook
+Example,
+
+```tsx
+import { useProof } from '@omnid/react';
+const rsa = {
+    wasmUrl: 'https://proxy.anudit.workers.dev/corsproxy?apiurl=https://cdn.omnid.io/api/public/dl/fKe9TQJo/rsa.wasm',
+    zkeyUrl: 'https://proxy.anudit.workers.dev/corsproxy?apiurl=https://cdn.omnid.io/api/public/dl/fKe9TQJo/rsa_gzip.zkey'
+};
+const { downloaded, downloadProgress, makeProof } = useProof(rsa, { gzippedZkey: true });
+const { proof, publicSignals, calldata, timeTaken } = await makeProof(input);
+```
+
+Reference,
+```tsx
+const useProof = (
+  circuitFiles: { wasmUrl: string; zkeyUrl: string },
+  options?: {
+    differDownload?: boolean;
+    gzippedZkey?: boolean;
+    gzippedWasm?: boolean;
+    disableCache?: boolean;
+  }
+): {
+  wasmBuffer: Uint8Array | null;
+  zkeyBuffer: Uint8Array | null;
+  downloaded: boolean;
+  downloadProgress: string | null;
+  download: () => Promise<boolean>;
+  computeWitness: (wasm_buffer: Buffer, inputs: CircuitSignals) => Promise<Uint8Array>;
+  makeProof: (inputs: CircuitSignals) => Promise<{
+    proof: Groth16Proof;
+    publicSignals: PublicSignals;
+    timeTaken: number;
+    calldata: any;
+  }>;
+  clearCache: () => Promise<void>;
+}
+```
+
+## Managing Localstorage
+
+Usage,
+
+```jsx
+import { storeUint8Array, removeUint8Array, retrieveUint8Array } from "@omnid/react";
+```
+
+Reference,
+
+### `storeUint8Array`
+```tsx
+async function storeUint8Array(
+    key: string,
+    uint8ArrayData: Uint8Array,
+    storeName = 'circuit-cache'
+): Promise<void>
+```
+
+### `removeUint8Array`
+```tsx
+async function removeUint8Array(
+    key: string,
+    storeName = 'circuit-cache'
+): Promise<void>
+```
+
+### `retrieveUint8Array`
+```tsx
+async function retrieveUint8Array(
+    key: string,
+    storeName = 'circuit-cache'
+): Promise<Uint8Array | null>
+```
+
+## Tracking Events
+
+
+### `useWebSocket` hook
+
+Instead of waiting for the chain to emit the event you can subscribe to the relay for incoming transaction hashes for your channel.
+
+Example,
+```tsx
+import { useWebSocket, WebSocketMessageHandler } from "@omnid/react";
+
+const handleMessage: WebSocketMessageHandler = (data) => {
+  alert(data.message, data.channel);
+};
+
+useWebSocket("YourZKHash", handleMessage, true, false);
+```
+
+Reference,
+```tsx
+export const useWebSocket = (
+  channelId: string,
+  onMessage: WebSocketMessageHandler,
+  active: boolean = false,
+  shouldReconnect: boolean = false,
+): WebSocket | null
+```
+
+## Managing Passkeys
