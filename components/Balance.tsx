@@ -1,3 +1,5 @@
+"use client";
+
 import { optimismSepolia } from "viem/chains";
 import { http, createPublicClient, formatEther } from "viem";
 import { useEffect, useState } from "react";
@@ -29,7 +31,7 @@ const Balance = ({
     });
   }, []);
 
-  return <span>{bal} ETH</span>;
+  return <>{bal} ETH</>;
 };
 
 export default Balance;

@@ -1,53 +1,10 @@
-import nextra from "nextra";
+import { createMDX } from "fumadocs-mdx/next";
+const withMDX = createMDX();
 
-import withPlugins from "next-compose-plugins";
-import withPWA from "next-pwa";
-
-const withNextra = nextra({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.tsx",
-  search: {
-    codeblocks: true,
-  },
-  defaultShowCopyCode: true,
-});
-
-const nextConfig = {
-  poweredByHeader: false,
+/** @type {import('next').NextConfig} */
+const config = {
   reactStrictMode: true,
-  // swcMinify: true,
+  typescript: { ignoreBuildErrors: true },
 };
 
-export default withPlugins(
-  [
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: "public",
-          // runtimeCaching
-        },
-      },
-    ],
-    [
-      withNextra,
-      {
-        reactStrictMode: true,
-        eslint: {
-          ignoreDuringBuilds: true,
-        },
-        redirects: () => [],
-        webpack(config) {
-          const allowedSvgRegex = /components\/icons\/.+\.svg$/;
-
-          config.module.rules.push({
-            test: allowedSvgRegex,
-            use: ["@svgr/webpack"],
-          });
-          return config;
-        },
-      },
-    ],
-  ],
-  nextConfig,
-);
+export default withMDX(config);

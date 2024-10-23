@@ -1,0 +1,151 @@
+---
+title: Circom
+---
+
+## Install Circom
+
+### Direct Binary
+
+You can download the latest release from
+https://github.com/iden3/circom/releases
+
+### From Source
+
+<Callout type="info">
+Requires Rust `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+</Callout>
+
+```bash
+git clone https://github.com/iden3/circom
+cd circom
+cargo install --path . --release
+```
+
+### Use Playground
+
+You can also build and try out circuits on zkREPL.
+
+https://zkrepl.dev/?gist=168c24e72f4f492d998ab00dee82e21e
+
+## Understand your Circuit
+
+Today we will build this simple circuit that creates a zero knowledge proof of knowing the factors of a number without revealing the number.
+
+- The circuit takes three inputs, `a`, `b`, `ab`.
+- `a` & `b` are private inputs, `ab` is a public input.
+- The circuit has one output, `1` if valid, `0` if invalid.
+```c
+// Example
+a=10, b=11, ab=110 // Valid Inputs.
+a=10, b=11, ab=100 // Invalid Inputs.
+```
+
+*Full Circuit*
+
+```c title="CheckMult.circom"
+pragma circom 2.1.6;
+
+template IsZero() {
+    signal input in;
+    signal output out;
+    signal inv;
+    inv <-- in!=0 ? 1/in : 0;
+    out <== -in*inv +1;
+    in*out === 0;
+}
+
+template IsEqual() {
+    signal input in[2];
+    signal output out;
+    component isz = IsZero();
+    in[1] - in[0] ==> isz.in;
+    isz.out ==> out;
+}
+
+template CheckMult() {
+    signal input a;
+    signal input b;
+    signal input ab;
+    signal output out;
+
+    component eq = IsEqual();
+    eq.in[0] <== a * b;
+    eq.in[1] <== ab;
+    eq.out ==> out;
+}
+
+component main { public [ab] } = CheckMult();
+
+/* INPUT = {
+    "a": "5",
+    "b": "77",
+    "ab": "265"
+} */
+```
+
+## Setup your Project
+
+Fork the template, https://github.com/anudit/circom-template.
+It simplifies the process of compiling Circom circuits in a highly customizable way.
+
+Your project structure should look something like this.
+
+<Files>
+  <Folder name="build"/>
+  <Folder name="circomlib"/>
+  <Folder name="circuits" defaultOpen>
+    <File name="CheckMult.circom" />
+  </Folder>
+  <Folder name="scripts"/>
+  <Folder name="templates"/>
+  <Folder name="tests" defaultOpen>
+   <File name="checkMult.test.ts" />
+  </Folder>
+  <File name="package.json" />
+</Files>
+
+You'll need to download the Powers of Tau file from `https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_20.ptau` and save it inside the `build` directory.
+
+<Callout type="info">
+You can find the other PTau files here https://github.com/iden3/snarkjs/blob/master/README.md#7-prepare-phase-2
+</Callout>
+
+Install the dependencies,
+```bash
+bun install
+```
+
+## Build & Test your Circuit
+
+Now the fun part.
+
+```bash
+bun run build
+```
+
+Your circuit files should be present in `build/CheckMult` directory.
+
+```bash
+bun run test
+```
+
+Your logs should look like this.
+
+```bash
+➜  circom-template git:(main) bun run test
+$ bun test ./tests/*.test.ts
+bun test v1.1.30 (7996d06b)
+
+tests/checkMult.test.ts:
+✓ Test Mult > Mock generate data [53.45ms]
+
+ 1 pass
+ 0 fail
+ 3 expect() calls
+Ran 1 tests across 1 files. [269.00ms]
+```
+
+## More Reading
+
+- Learn Circom: https://learn.0xparc.org/materials/circom/learning-group-1/circom-1
+- Build optimzed graphs of your circuits: https://github.com/iden3/circom-witnesscalc

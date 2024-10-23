@@ -1,0 +1,263 @@
+---
+title: Noir Guide
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+In this guide we'll talk about how to run Noir (PLONK & HONK) Circuits on your iOS/Android devices.
+
+## Quickstart
+
+### Prepping the Project
+
+Let's get started with a blank expo project, you can also use any existing expo app, adding zk-proofs requires only a couple of lines really.
+```bash
+bun create expo --template blank-typescript
+```
+
+and then add our expo module and relevant libs.
+```bash
+bunx expo install zk-expo expo-file-system @react-native-async-storage/async-storage
+```
+
+We won't go in details about how to setup and build your Noir Circuits or how to make an Expo App. You can find a tutorial on that here and here.
+
+We already have some sample files ready for you that you'll need to get your circuits running, create a directory `/public` in the project root and put these files in it.
+- [srs.dat](/)
+- Bytecode
+  ```js
+  H4sIAAAAAAAA/7VUSQ7DIAyEhKa99ic2SzC3fqWo5P8vqBopUCHCLWYkZIQlMx4vUhxQ+7mJM+ZsX9kaWK1NXic0+AYdIjmwLq6EhI7cR5MxiSz5EIOHgNYk3FwwGxyoY8E1oGTkNfHxgqKj7OgpGz3hGpCTt2zqfuLPRXqUEPOAuIq5+UfkrfhrBGJg0yrB27Sq4Vnfe0P4f7xnu3R8BY/9TPn+ZRa4bNd685a/VOVfKi6SnwvW+fYm/9nR5wcPIDK6OgYAAA==
+  ```
+
+Next, create a file in the root called `metro.config.js` so that expo can pick up the `dat` extension.
+
+```js {6} title="metro.config.js"
+const { getDefaultConfig } = require("expo/metro-config");
+const path = require("path");
+
+const config = getDefaultConfig(__dirname);
+
+config.resolver.assetExts = ["dat"];
+
+module.exports = config;
+```
+
+
+### Running the circuits
+
+<Steps>
+
+#### Setup SRS
+
+SRS (Structured Reference String) is a large file (~300MB). We need this for making our circuits work. This file can be downloaded once and stored locally for future use.
+
+<Callout type="info" emoji="ℹ️">
+  The entire ~300MB SRS is to support circuits of maximum size 33. You won't need all of it if your circuits are small. More [here](/) for later.
+</Callout>
+
+
+```tsx title="App.tsx"
+import { useEffect, useState } from "react";
+import { View, Button, Text } from "react-native";
+import * as FileSystem from "expo-file-system";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as ZkExpo from "zk-expo";
+
+const FILE_URL = "https://cdn.omnid.io/api/public/dl/Dc_OClY0";
+const FILE_NAME = "srs.dat";
+const STORAGE_KEY = "srsFileUri";
+const BYTECODE =
+  "H4sIAAAAAAAA/7VUSQ7DIAyEhKa99ic2SzC3fqWo5P8vqBopUCHCLWYkZIQlMx4vUhxQ+7mJM+ZsX9kaWK1NXic0+AYdIjmwLq6EhI7cR5MxiSz5EIOHgNYk3FwwGxyoY8E1oGTkNfHxgqKj7OgpGz3hGpCTt2zqfuLPRXqUEPOAuIq5+UfkrfhrBGJg0yrB27Sq4Vnfe0P4f7xnu3R8BY/9TPn+ZRa4bNd685a/VOVfKi6SnwvW+fYm/9nR5wcPIDK6OgYAAA==";
+
+export const NoirSection = () => {
+  const [fileUri, setFileUri] = useState<string | null>(null);
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const loadFileUri = async () => {
+      try {
+        const savedUri = await AsyncStorage.getItem(STORAGE_KEY);
+        if (savedUri) {
+          setFileUri(savedUri);
+        }
+      } catch (error) {
+        console.error("Failed to load the file URI from storage", error);
+      }
+    };
+    loadFileUri();
+  }, []);
+
+  const downloadFile = async () => {
+    setIsDownloading(true);
+    try {
+      // Check if the file is already downloaded
+      const savedUri = await AsyncStorage.getItem(STORAGE_KEY);
+      if (savedUri) {
+        console.log("File already downloaded:", savedUri);
+        setFileUri(savedUri);
+        return;
+      }
+
+      // Define the path to save the file
+      const fileUri = `${FileSystem.documentDirectory}${FILE_NAME}`;
+
+      // Start downloading the file
+      const downloadResumable = FileSystem.createDownloadResumable(
+        FILE_URL,
+        fileUri,
+        {},
+        (downloadProgress) => {},
+      );
+
+      let downloadSnapshot = await downloadResumable.downloadAsync();
+
+      if (downloadSnapshot) {
+        const { uri } = downloadSnapshot;
+        console.log("Finished downloading to:", uri);
+
+        // Save the file URI for future use
+        await AsyncStorage.setItem(STORAGE_KEY, uri);
+        setFileUri(uri);
+      } else {
+        alert("Download Failed.");
+      }
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  async function setupSrs() {
+    if (fileUri) {
+      await ZkExpo.noirSetupSrs(fileUri, BYTECODE);
+    }
+  }
+
+  return (
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {fileUri ? (
+        <View>
+          <Text>File is downloaded and saved at: {fileUri}</Text>
+          <Button
+            title="Clear Storage"
+            onPress={() => {
+              AsyncStorage.clear();
+              console.log("cleared");
+            }}
+          />
+        </View>
+      ) : (
+        <Button
+          title={isDownloading ? "Downloading..." : "Download File"}
+          onPress={downloadFile}
+          disabled={isDownloading}
+        />
+      )}
+      <Button title="Setup Noir SRS" onPress={setupSrs} />
+    </View>
+  );
+};
+
+```
+
+- You should now be able to download and cache the SRS file locally.
+- You should now be able to click "Setup Noir SRS" and setup the srs.
+- `noirSetupSrs` only needs to be called once throughout your app, you can do this in the background when you app opens.
+
+#### Make the Proof
+
+```tsx {7-14, 44-45} title="App.tsx"
+export const NoirSection = () => {
+  const [fileUri, setFileUri] = useState<string | null>(null);
+  const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
+  // useEffect, downloadFile, setupSrs functions
+
+  async function makeNoirProof(type: 'plonk'|'honk') {
+    let { success, proof, vk } = await ZkExpo.noirProve(
+      "17",
+      BYTECODE,
+      ["0x2", "0x2"],
+      type,
+    );
+  }
+
+  return (
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {fileUri ? (
+        <View>
+          <Text>File is downloaded and saved at: {fileUri}</Text>
+          <Button
+            title="Clear Storage"
+            onPress={() => {
+              AsyncStorage.clear();
+              console.log("cleared");
+            }}
+          />
+        </View>
+      ) : (
+        <Button
+          title={isDownloading ? "Downloading..." : "Download File"}
+          onPress={downloadFile}
+          disabled={isDownloading}
+        />
+      )}
+      <Button title="Setup Noir SRS" onPress={setupSrs} />
+      <Button title="Make Noir Plonk Proof" onPress={()=>{makeNoirProof('plonk')}} />
+      <Button title="Make Noir Honk Proof" onPress={()=>{makeNoirProof('honk')}} />
+    </View>
+  );
+};
+```
+
+Voila 🥳 You just made a Noir proof.
+
+</Steps>
+
+## On-chain Verification
+
+## API Reference
+
+### `ZkExpo.noirSetupSrs`
+
+```ts
+async function noirSetupSrs(
+  srsPath: string,    // Local path of the SRS file.
+  bytecode: string,   // Bytecode in base64.
+): Promise<{ size: string }>  // Returns the Size of the SRS file.
+```
+
+### `ZkExpo.noirProve`
+
+```ts
+async function noirProve(
+  srsSize: string,    // Size of the SRS file.
+  bytecode: string,   // Bytecode in base64.
+  witness: string[],  // Inputs in hex.
+  proofType: "plonk" | "honk" = "plonk",
+): Promise<{ success: true; proof: string; vk: string } | { success: false }>
+```
+
+## Some Gotchas
+1. Make sure to update your dependencies, also use `npx expo install --fix`.
+1. Use Development Client Builds, this won't work on Expo Go as it requires native code.
+2. When using Development Client for testing, if you do `bunx expo run ios` and push an updated build of your app, AsyncStorage will remember your cached file but iOS would've removed it. In this case, clear your srs file from AsyncStorage and download it again. This is only for development versions of your app, updates on prod will be fine.
+3. If your iOS app runs into any linking issues on developement when using `eas build`, do an `expo prebuild` and open the `ios` folder in XCode. XCode GUI uses certain Apple internals that perform better than eas builds that use `xcodebuild` under the hood.
+
+## More Reading
+1. Noir Lang Documentation - https://noir-lang.org/docs

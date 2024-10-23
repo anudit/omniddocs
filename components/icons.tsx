@@ -1,89 +1,14 @@
-export const HomeIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 24 24"
-      {...props}
-    >
-      <path d="M9.5 17.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z" />
-      <path
-        fillRule="evenodd"
-        d="M14.2 2.6a3.5 3.5 0 0 0-4.4 0L3.3 7.7A3.5 3.5 0 0 0 2 10.5v8A3.5 3.5 0 0 0 5.5 22h13a3.5 3.5 0 0 0 3.5-3.5v-8a3.5 3.5 0 0 0-1.3-2.8zm-3.7.8a2.5 2.5 0 0 1 3 0l6.5 5a2.5 2.5 0 0 1 1 2v8.1a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-8a2.5 2.5 0 0 1 1-2z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-};
-export const InfinityIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 512 512"
-      {...props}
-    >
-      <g
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit="10"
-      >
-        <path d="M120 356a100 100 0 0 1 0-200m272 0a100 100 0 0 1 0 200M120 156c100 0 172 200 272 200" />
-        <path d="M392 156c-100 0-172 200-272 200" />
-      </g>
-    </svg>
-  );
-};
+import React, { forwardRef } from "react";
 
-export const AddIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 683 683"
-      {...props}
-    >
-      <defs>
-        <clipPath id="a" clipPathUnits="userSpaceOnUse">
-          <path d="M0 512h512V0H0Z" />
-        </clipPath>
-      </defs>
-      <path
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit="10"
-        strokeWidth="53.3"
-        d="M341 221v240M221 341h240"
-      />
-      <g clipPath="url(#a)" transform="matrix(1.33333 0 0 -1.33333 0 683)">
-        <path
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit="10"
-          strokeWidth="40"
-          d="M378 54a236 236 0 1 0 74 71"
-        />
-      </g>
-    </svg>
-  );
-};
-
-export const ReactNativeIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
+export const ReactNativeIcon = forwardRef<
+  SVGSVGElement,
+  JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+>((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-11.5 -10.2 23 20.5"
+      ref={ref} // Forward the ref to the svg element
       {...props}
     >
       <circle r="2" fill="#61dafb" />
@@ -94,11 +19,14 @@ export const ReactNativeIcon = (
       </g>
     </svg>
   );
-};
+});
 
-export const ExpoIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
+ReactNativeIcon.displayName = "ReactNativeIcon";
+
+export const ExpoIcon = forwardRef<
+  SVGSVGElement,
+  JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+>((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -109,11 +37,14 @@ export const ExpoIcon = (
       <path d="M0 20c0 .6.2 1.1.7 1.9.6.8 1.6 1.3 2.3.5.5-.5 5.8-9.7 8.4-13.3a.8.8 0 0 1 1.2 0c2.6 3.6 7.9 12.8 8.4 13.3.7.8 1.7.3 2.3-.5.5-.9.7-1.5.7-2S15.7 4 15 2.6c-.9-1.2-1.1-1.5-2.5-1.5h-1c-1.4 0-1.6.3-2.4 1.5a414 414 0 0 0-9.1 17Z" />
     </svg>
   );
-};
+});
 
-export const NodeJsIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
+ReactNativeIcon.displayName = "ExpoIcon";
+
+export const NodeJsIcon = forwardRef<
+  SVGSVGElement,
+  JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+>((props, ref) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -127,53 +58,6 @@ export const NodeJsIcon = (
       />
     </svg>
   );
-};
+});
 
-export const BookIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 64 64"
-      {...props}
-    >
-      <path d="M54.2 12.2a6 6 0 0 0-4.4-1.7c-7 .2-12.5 1.7-16.7 4.5a2 2 0 0 1-2.2 0 32.3 32.3 0 0 0-16.7-4.5 6 6 0 0 0-4.4 1.7A6 6 0 0 0 8 16.5v26a6 6 0 0 0 5.8 6c6 .3 11.2 1.6 15 4a6 6 0 0 0 6.3 0c4-2.4 9-3.7 15.1-4a6 6 0 0 0 5.8-6v-26a6 6 0 0 0-1.8-4.3zM13.9 44.6a2 2 0 0 1-1.9-2v-26a2 2 0 0 1 .6-1.5 2 2 0 0 1 1.4-.6c6.2.2 11.2 1.5 14.7 3.8a6 6 0 0 0 1.3.6v29.7a34.5 34.5 0 0 0-16.1-4zm38.1-2a2 2 0 0 1-1.9 2 34.5 34.5 0 0 0-16.1 4V19a6 6 0 0 0 1.3-.6c3.5-2.3 8.5-3.6 14.6-3.8a2 2 0 0 1 1.5.6 2 2 0 0 1 .6 1.4z" />
-    </svg>
-  );
-};
-export const VersionIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 24 24"
-      {...props}
-    >
-      <path
-        fillRule="evenodd"
-        d="M10 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2zm-.5-2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V4a.5.5 0 0 0-.5-.5H10a.5.5 0 0 0-.5.5zM6.2 4.2a.8.8 0 0 1-.4 1 1 1 0 0 0-.3.2.4.4 0 0 0 0 .1v13.1l.3.2a.8.8 0 1 1-.6 1.4c-.3-.2-.6-.3-.8-.6-.3-.3-.4-.7-.4-1.1v-13c0-.4.1-.8.4-1 .2-.4.5-.5.8-.7a.8.8 0 0 1 1 .4zm-4 1.4a.8.8 0 0 1-.3 1l-.3.3-.1.1v10.1l.4.3a.8.8 0 1 1-.8 1.2C.7 18.4 0 18 0 17V7c0-1 .7-1.4 1.1-1.6a.8.8 0 0 1 1 .2z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-};
-
-export const ExternalIcon = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
-) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      xmlSpace="preserve"
-      viewBox="0 0 512 512"
-      {...props}
-    >
-      <path d="M488 273a24 24 0 0 0-24 24v96a70 70 0 0 1-71 71H119a70 70 0 0 1-71-71V119a70 70 0 0 1 71-71h96a24 24 0 1 0 0-48h-96A119 119 0 0 0 0 119v274a119 119 0 0 0 119 119h274a119 119 0 0 0 119-119v-96a24 24 0 0 0-24-24z" />
-      <path d="M487 0H338a24 24 0 0 0-24 24c0 13 11 24 25 24h91L239 239a24 24 0 0 0 0 34 24 24 0 0 0 34 0L464 82v92a24 24 0 0 0 48 0V25a25 25 0 0 0-25-25z" />
-    </svg>
-  );
-};
+ReactNativeIcon.displayName = "NodeJsIcon";

@@ -1,0 +1,5 @@
+{
+  "title": "Expo - React Native",
+  "pages": ["circom", "noir", "halo2"],
+  "icon": "Expo"
+}

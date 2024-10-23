@@ -1,0 +1,237 @@
+---
+title: Circom Guide
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+In this guide we'll talk about how to run Circom (Groth16) Circuits on your iOS/Android devices.
+We won't go in details about how to [setup and build your Circom Circuits](/tutorials/circom) or how to [make an Expo App](https://docs.expo.dev/tutorial/create-your-first-app/).
+
+
+## Quickstart
+
+### Prepping the Project
+
+Let's get started with a blank expo project, you can also use any existing expo app, adding zk-proofs requires only a couple of lines really.
+```bash
+bun create expo --template blank-typescript
+```
+
+and then add our expo module and relevant libs.
+```bash
+bunx expo install zk-expo expo-asset
+```
+
+We already have some sample files ready for you that you'll need to get your circuits running, create a directory `/public` in the project root and put these files in it.
+- [circuit_wasm.wasm](/)
+- [circuit_zkey.zkey](/)
+- [circuit_graph.graph](/)
+
+<Callout type="info" emoji="ℹ️">
+  Expo throws some errors if the files have the same name regardless of extensions so make sure they have different names.
+</Callout>
+
+Next, create a file in the root called `metro.config.js` so that expo can pick up the `wasm`, `zkey` & `graph` extensions.
+
+```js title="metro.config.js"
+const { getDefaultConfig } = require("expo/metro-config");
+const path = require("path");
+
+const config = getDefaultConfig(__dirname);
+
+config.resolver.assetExts = ["wasm", "zkey", "graph"]; // [!code highlight]
+
+module.exports = config;
+```
+
+
+### Running the circuits
+
+<Steps>
+
+<Step>
+#### Load the Assets
+
+```tsx {2-3,7-9} title="App.tsx"
+import { StyleSheet, Button, View } from 'react-native';
+import { useAssets } from "expo-asset"; // [!code highlight]
+import * as ZkExpo from "zk-expo"; // [!code highlight]
+
+export default function App() {
+
+  const [assets, error] = useAssets([ // [!code highlight]
+    require("./public/loginProof_wasm.wasm"), // [!code highlight]
+    require("./public/loginProof_zkey.zkey"), // [!code highlight]
+  ]); // [!code highlight]
+
+  return (
+    <View style={styles.container}>
+      <Button title="Make Groth16 Proof" />
+    </View>
+  );
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+</Step>
+
+<Step>
+
+#### Make the Proof
+
+```tsx {11-31, 35} title="App.tsx"
+import { useAssets } from "expo-asset";
+import * as ZkExpo from "zk-expo";
+
+export default function App() {
+
+  const [assets, error] = useAssets([
+    require("./public/circuit_wasm.wasm"),
+    require("./public/circuit_zkey.zkey")
+  ]);
+
+  async function make() { // [!code highlight]
+    let inputs = { // [!code highlight]
+      secret: "1362766633228928585266883205500641602962979188179006392651332184307221268928",  // [!code highlight]
+      message: "246923712567881323126559150739123310486883838966133236273155052809857112023",  // [!code highlight]
+      scope: "187035976211163640032000461805755068405187575174480755232212391996596767257",  // [!code highlight]
+    }; // [!code highlight]
+ // [!code highlight]
+    if (assets) {  // [!code highlight]
+      let proof = await ZkExpo.groth16Prove(  // [!code highlight]
+        assets[0].localUri as string,  // [!code highlight]
+        assets[1].localUri as string, // [!code highlight]
+        JSON.stringify(inputs), // [!code highlight]
+      ); // [!code highlight]
+      console.log({proof}) // [!code highlight]
+    } else { // [!code highlight]
+      alert("Assets not loaded"); // [!code highlight]
+    } // [!code highlight]
+  } // [!code highlight]
+
+  return (
+    <View style={styles.container}>
+      <Button title="Make Groth16 Proof" onPress={make} />  // [!code highlight]
+    </View>
+  );
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+
+Voila 🥳 You just made a proof.
+
+</Step>
+
+<Step>
+
+#### Make the Proof (Advanced)
+
+<Callout type="info" emoji="ℹ️">
+  This method is experimental but gives a 2.5 - 3X Speedup. It does so by precompting the static execution graph required for the witness generation and getting rid of the wasm runtime requirement.
+  Not all Circom operations are supported but should work for most circuits, you can read more about this method at [@iden3/circom-witness](https://github.com/iden3/circom-witnesscalc)
+</Callout>
+
+```tsx title="App.tsx"
+import { useAssets } from "expo-asset";
+import * as ZkExpo from "zk-expo";
+
+export default function App() {
+
+  const [assets, error] = useAssets([
+    require("./public/circuit_graph.graph"),
+    require("./public/circuit_zkey.zkey")
+  ]);
+
+  async function make() {
+    let inputs = {
+      secret:
+        "1362766633228928585266883205500641602962979188179006392651332184307221268928",
+      message:
+        "246923712567881323126559150739123310486883838966133236273155052809857112023",
+      scope:
+        "187035976211163640032000461805755068405187575174480755232212391996596767257",
+    };
+
+    if (assets) {
+      let proof = await ZkExpo.groth16ProveV2(  // [!code highlight]
+        assets[0].localUri as string,
+        assets[1].localUri as string,
+        JSON.stringify(inputs),
+      );
+      console.log({proof})
+    } else {
+      alert("Assets not loaded");
+    }
+  }
+
+  return (
+    <View style={styles.container}>
+      <Button title="Make Groth16 Proof" onPress={make} />  // [!code highlight]
+    </View>
+  );
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+
+Voila 🥳 You just made a super-fast proof.
+
+</Step>
+</Steps>
+
+## On-chain Verification
+
+
+## API Reference
+
+### `ZkExpo.groth16Prove`
+
+```ts
+async function groth16Prove(
+  wasm_path: string,  // Local path to the wasm file.
+  zkey_path: string,  // Local path to the zkey file.
+  inputs: string,     // These are your JSON.stringified dictionary of inputs.
+): Promise<{ proof: any; publicSignals: any }>
+```
+
+### `ZkExpo.groth16ProveV2`
+
+```ts
+async function groth16Prove(
+  graph_path: string, // Local path to the graph file.
+  zkey_path: string,  // Local path to the zkey file.
+  inputs: string,     // These are your JSON.stringified dictionary of inputs.
+): Promise<{ proof: any; publicSignals: any }>
+```
+
+## Some Gotchas
+1. Make sure to update your dependencies, also use `npx expo install --fix`.
+1. Use Development Client Builds, this won't work on Expo Go as it requires native code.
+2. If your app crashes while testing `groth16Prove` on a real iOS device, run the app using `bunx expo prebuild` and XCode. iOS has some wierd quirks while running Wasm runtimes, this should be fine in the production versions of your app. You can also use `groth16ProveV2` which doesn't need the wasm runtime and is faster.
+3. iOS has memory restrictions of around 2-3GB imposed on each app. If your circuits are really large you might run into issues, consider splitting the circuits or using `groth16ProveV2` to optimize your circuits.
+4. If your iOS app runs into any linking issues on developement when using `eas build`, do an `expo prebuild` and open the `ios` folder in XCode. XCode GUI uses certain Apple internals that perform better than eas builds that use `xcodebuild` under the hood.

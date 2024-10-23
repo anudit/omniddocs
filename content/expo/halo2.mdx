@@ -1,0 +1,150 @@
+---
+title: Halo2 Guide
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+In this guide we'll talk about how to run Halo2 (PLONK) Circuits on your iOS/Android devices.
+
+## Quickstart
+
+### Prepping the Project
+
+Let's get started with a blank expo project, you can also use any existing expo app, adding zk-proofs requires only a couple of lines really.
+```bash
+bun create expo --template blank-typescript
+```
+
+and then add our expo module and relevant libs.
+```bash
+bunx expo install zk-expo expo-asset
+```
+
+We won't go in details about how to setup and build your Halo2 Circuits or how to make an Expo App. You can find a tutorial on that here and here.
+
+We already have some sample files ready for you that you'll need to get your circuits running, create a directory `/public` in the project root and put these files in it.
+- [halo2circuit.wasm](/)
+
+Next, create a file in the root called `metro.config.js` so that expo can pick up the `wasm` extension.
+
+```js {6} title="metro.config.js"
+const { getDefaultConfig } = require("expo/metro-config");
+const path = require("path");
+
+const config = getDefaultConfig(__dirname);
+
+config.resolver.assetExts = ["wasm"];
+
+module.exports = config;
+```
+
+
+### Running the circuits
+
+<Steps>
+
+#### Load the Assets
+
+```tsx {1-2,6-8} title="App.tsx"
+import { useAssets } from "expo-asset";
+import * as ZkExpo from "zk-expo";
+
+export default function App() {
+
+  const [assets, error] = useAssets([
+    require("./public/halo2circuit.wasm"),
+  ]);
+
+  return (
+    <View style={styles.container}>
+      <Button title="Make Halo2 Proof" />
+    </View>
+  );
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+
+#### Make the Proof
+
+```tsx {10-29, 33} title="App.tsx"
+import { useAssets } from "expo-asset";
+import * as ZkExpo from "zk-expo";
+
+export default function App() {
+
+  const [assets, error] = useAssets([
+    require("./public/halo2circuit.wasm"),
+  ]);
+
+  async function make() {
+    let inputs = {
+      secret:
+        "1362766633228928585266883205500641602962979188179006392651332184307221268928",
+      message:
+        "246923712567881323126559150739123310486883838966133236273155052809857112023",
+      scope:
+        "187035976211163640032000461805755068405187575174480755232212391996596767257",
+    };
+
+    if (assets) {
+      let proof = await ZkExpo.halo2Prove(
+        assets[0].localUri as string,
+        [1, 1, 55],
+      );
+      console.log({proof})
+    } else {
+      alert("Assets not loaded");
+    }
+  }
+
+  return (
+    <View style={styles.container}>
+      <Button title="Make Halo2 Proof" onPress={make} />
+    </View>
+  );
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+```
+
+Voila 🥳 You just made a Halo2 proof.
+
+</Steps>
+
+## On-chain Verification
+
+## API Reference
+
+### `ZkExpo.halo2Prove`
+
+```ts
+async function halo2Prove(
+  wasmPath: string,         // Local path to the wasm file.
+  publicInputs: number[],   // An array of numerical inputs to the circuit.
+): Promise<string>          // Returns the proof in hexadecimal.
+```
+
+## Some Gotchas
+1. Make sure to update your dependencies, also use `npx expo install --fix`.
+1. Running Halo2 circuits in a WASM runtime using `zk-expo` requires some simple C glue, read about this in the Halo2 tutorial here.
+2. We are following the [PSE's fork](https://github.com/privacy-scaling-explorations/halo2) of Halo2 v3 which has excellent support for on-chain proof verification.
+3. Use Development Client Builds, this won't work on Expo Go as it requires native code.
+4. iOS has memory restrictions of around 2-3GB imposed on each app. If your circuits are really large you might run into issues, consider splitting the circuits.
+5. If your iOS app runs into any linking issues on developement when using `eas build`, do an `expo prebuild` and open the `ios` folder in XCode. XCode GUI uses certain Apple internals that perform better than eas builds that use `xcodebuild` under the hood.
