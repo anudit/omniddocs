@@ -1,0 +1,75 @@
+---
+title: On-Chain Verification
+---
+
+## EVM
+
+Groth16 Proof Verification costs a base ~220k gas.
+
+<Callout type="info">
+More on Gas Costs https://hackmd.io/Fa4A8lVKRM2TwVh1dhUb1Q
+</Callout>
+
+### Deploy the contract
+
+You can use [Remix](https://remix.ethereum.org/) for simple deployments.
+
+### Install and setup Wagmi
+
+```bash
+bun i viem wagmi @tanstack/react-query
+```
+
+```tsx title="_app.tsx"
+import { http, createConfig } from 'wagmi'
+import { mainnet, sepolia } from 'wagmi/chains'
+import { WagmiProvider } from 'wagmi'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+export const config = createConfig({
+  chains: [mainnet, sepolia],
+  transports: {
+    [mainnet.id]: http(),
+    [sepolia.id]: http(),
+  },
+});
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        {/** ... */}
+      </QueryClientProvider>
+    </WagmiProvider>
+  )
+}
+```
+
+### Verify the proof on-chain
+
+```tsx
+const { proof, calldata, publicSignals } = await makeProof(input);
+
+const client = usePublicClient();
+const data = await client.readContract({
+  address: contractAddress,
+  abi: contractAbi,
+  functionName: 'verifyProof',
+  args: calldata
+});
+```
+
+## Solana
+
+EVM Extension: https://neonevm.org/
+
+## NEAR
+
+EVM Extension: https://aurora.dev/
+
+
+## More Verifiers
+
+https://github.com/SuccinctPaul/awesome-zk-verifier

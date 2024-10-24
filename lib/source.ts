@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { docs, meta } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
-import { Dock as HomeIcon, icons } from "lucide-react";
+import { icons } from "lucide-react";
 import { ReactNativeIcon, ExpoIcon, NodeJsIcon } from "@/components/icons";
 
 // export const pages = [

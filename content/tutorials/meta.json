@@ -1,5 +1,13 @@
 {
   "title": "Tutorials",
   "icon": "Book",
-  "pages": ["circom", "noir", "halo2", "web", "solidity", "glossary"]
+  "pages": [
+    "circom",
+    "noir",
+    "halo2",
+    "on-chain-verification",
+    "web",
+    "solidity",
+    "glossary"
+  ]
 }

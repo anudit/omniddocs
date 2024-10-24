@@ -1,7 +1,6 @@
 {
   "title": "Protocol",
   "pages": [
-    "overview",
     "zk-proofs",
     "authentication",
     "cross-chain",
