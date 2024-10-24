@@ -14,32 +14,50 @@ It simplifies the process of compiling Halo2 circuits in a highly customizable w
 Your project structure should look something like this.
 
 <Files>
-  <Folder name="build"/>
-  <Folder name="circomlib"/>
-  <Folder name="circuits" defaultOpen>
-    <File name="CheckMult.circom" />
+  <Folder name="src" defaultOpen>
+    <File name="fib.rs" />
+    <File name="lib.rs" />
   </Folder>
-  <Folder name="scripts"/>
-  <Folder name="templates"/>
-  <Folder name="tests" defaultOpen>
-   <File name="checkMult.test.ts" />
-  </Folder>
-  <File name="package.json" />
+  <File name="Cargo.toml" />
 </Files>
 
-## Understand the Circuit
-
-
+- `fib.rs` contains a fibonacci circuit.
+- `lib.rs` contains the customizable C glue to run your circuit.
 
 ## Understand the C Glue
 
+```rust
+pub extern "C" fn compute(
+  public_inputs: *const c_char
+) -> *const c_char {}
+```
 
+This signature should remain constant otherwise `zk-expo` won't pickup the function.
+The `compute` function contains the functions you need to parse inputs and return valid json.
 
 ## Build and Test
 
+<Callout type="info">
+Requires Rust to be on nightly : `rustup nightly`
 
+Requires the WASM toolchain : `rustup target add wasm32-unknown-unknown`
+</Callout>
+
+```bash
+cargo +nightly build --target wasm32-unknown-unknown --release
+```
+
+Optimize the wasm file,
+```bash
+brew install binaryen
+wasm-opt -Oz -o optimized.wasm ./target/wasm32-unknown-unknown/release/hello_wasm.wasm
+```
 
 ## On-chain Verification
+
+```rust
+
+```
 
 - Your Solidity Verifier should be present in ``
 - Tutorial on [On-chain Verification](/tutorials/on-chain-verification)

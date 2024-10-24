@@ -1,6 +1,6 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
-import { LucideGithub, LucideTwitter } from "lucide-react";
+import { LucideGithub, LucideTwitter, BookText, HouseIcon } from "lucide-react";
 import { createElement } from "react";
 import { DiscordIcon } from "@/components/icons";
 
@@ -25,17 +25,19 @@ export const baseOptions: BaseLayoutProps = {
       text: "Home",
       url: "https://omnid.io",
       active: "nested-url",
+      icon: createElement(HouseIcon),
     },
     {
       text: "Documentation",
       url: "/",
       active: "nested-url",
+      icon: createElement(BookText),
     },
     {
       text: "Discord",
       url: "https://discord.gg/xN4hK3uQEV",
       active: "nested-url",
-      // icon: createElement(DiscordIcon),
+      icon: <DiscordIcon />,
     },
     {
       text: "Twitter",

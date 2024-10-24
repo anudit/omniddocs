@@ -5,46 +5,290 @@ icon: Nodejs
 
 ## Installation
 
-<Tabs items={[ 'bun', 'pnpm','yarn', 'npm']} groupId="selected-pkg-manager" persist>
+<Tabs items={['bun', 'pnpm', 'yarn', 'npm']} groupId="selected-pkg-manager" persist>
   <Tab value="bun">
-
     ```sh
     bun i @omnid/sdk
     ```
-
   </Tab>
   <Tab value="pnpm">
-
     ```sh
     pnpm i --save @omnid/sdk
     ```
-
   </Tab>
   <Tab value="yarn">
-
     ```sh
     yarn add @omnid/sdk
     ```
-
   </Tab>
   <Tab value="npm">
-
     ```sh
     npm i --save @omnid/sdk
     ```
-
   </Tab>
 </Tabs>
 
 This SDK is compatible for the Web, Server & React-Native based environments.
 Here is a tutorial on Intergating this on the [`Web`](/tutorials/web).
 
+You can set it up using,
+
+```ts
+import { Omnid } from "@omnid/sdk";
+let omnid = new Omnid();
+```
+
 ## Authentication
+
+### `relayLoginProof`
+
+Example,
+```tsx
+let relayResponse = await omnid.auth.relayLoginProof(
+  [
+    proof.a[0],
+    proof.a[1],
+    proof.b[0][1],
+    proof.b[0][0],
+    proof.b[1][1],
+    proof.b[1][0],
+    proof.c[0],
+    proof.c[1],
+  ],
+  publicSignals
+);
+```
+
+Reference,
+```tsx
+relayLoginProof = async (
+  proof: Array<string>,
+  publicSignals: Array<string>,
+  relayEndpoint: string = "https://alchemy.omnid.io/relay/login",
+): Promise<RelayResponse>
+```
+
+### `exchangeForJwt`
+
+Example,
+```tsx
+let body = await req.json() as Omit<TokenExchangeRequest, 'appSecretKey'>;
+let omnid = new Omnid();
+
+const respData = await omnid.auth.exchangeForJwt({
+    ...body,
+    appSecretKey: process.env['OMNID_SIGNIN_SECRET_KEY'] as string
+});
+```
+
+Reference,
+```tsx
+exchangeForJwt = async (
+  details: TokenExchangeRequest,
+  vaultEndpoint: string = "https://vault.omnid.io",
+): Promise<TokenExchangeResponse>
+```
 
 ## Function Cloud
 
+Function Cloud hosts large circuit assets and has a fast proof execution environment supporting multiple backends.
+[Learn more about it](/protocol/function-cloud)
+
+### `getCircuitFiles`
+
+Example,
+```tsx
+const sig = omnid.fc.getCircuitFiles('VerifySignature10');
+const { downloaded, downloadProgress, makeProof } = useProof(sig);
+```
+
+Reference,
+```tsx
+getCircuitFiles = (
+  proofId: supportedProofIds,
+  cdn = ''
+): circuitFileDetails
+```
+
+### `makeProof`
+
+Example,
+```tsx
+const { proof, publicSignals } = await makeProof('rsa', []);
+```
+
+Reference,
+```tsx
+makeProof = async (
+  proofId: supportedProofIds,
+  inputs: CircuitSignals,
+  node: string = `https://fc.omnid.io`
+): Promise<FunctionCloudProofResponse>
+```
+
+### `relayProof`
+
+Example,
+```tsx
+const res = await relayProof('11', []);
+```
+
+Reference,
+```tsx
+relayProof = async (
+  groupId: number,
+  proofData: ProofData,
+  relayEndpoint: string = "https://relay.omnid.io",
+): Promise<RelayResponse>
+```
+
+### `portalProof`
+
+Excute proofs on one chain and have them portalled to another.
+
 ## Group Templates
 
+These let you quickly get the addresses holding any token, NFT, Attestation, DAO etc.
+
+### `fromToken`
+
+Example,
+```tsx
+let data = await fromToken('0x00', 'eth', 'APIKEY');
+```
+
+Reference,
+```tsx
+fromToken = async (
+  token: string,
+  chainName: string,
+  COVALENT_APIKEY: string
+): Promise<Array<TokenHolder>>
+```
+
+### `fromSnapshot`
+
+Example,
+```tsx
+let data = await fromSnapshot(
+  'aave.eth',
+  '0xe03ecf69d92f04d39d1385ccc87d8782347471a7305897e85b3d5d04f26a522d',
+);
+```
+
+Reference,
+```tsx
+fromSnapshot = async (
+  space: string,
+  proposal: string | null = null,
+  first: number = 1000,
+  skip: number = 0
+): Promise<SnapshotVote[]>
+```
+
+### `fromEas`
+
+Example,
+```tsx
+let data = await fromEas(
+  '0xe03ecf69d92f04d39d1385ccc87d8782347471a7305897e85b3d5d04f26a522d',
+  '0x385ccc87d8782347471a7305897e85b3d5d04f26a522'
+  1
+);
+```
+
+Reference,
+```tsx
+fromEas = async (
+  schemaId: string,
+  attestor: string,
+  chainId: 1 | 10 | 8453 | 42161 | 59144 | 11155111 | 11155420 | 534351
+): Promise<EasAttestation[]>
+```
+
 ## Query
+
+### `getGroupIds`
+
+Example,
+```tsx
+let ids = await getGroupIds();
+```
+
+Reference,
+```tsx
+async getGroupIds(): Promise<string[]>
+```
+
+### `getGroups`
+
+Example,
+```tsx
+let groups = await getGroups();
+```
+
+Reference,
+```tsx
+async getGroups(options: {
+  members?: boolean;
+  validatedProofs?: boolean;
+  filters?: {
+    admin?: string;
+    identityCommitment?: string;
+    timestamp?: Date;
+    timestampGte?: Date;
+    timestampLte?: Date;
+  };
+}): Promise<{
+  id: string;
+  merkleTree: {
+    root: string;
+    depth: number;
+    size: number;
+  };
+  admin?: string;
+  members?: Array<{
+    id: number;
+    timestamp: number;
+    identityCommitment: number;
+    index: number;
+  }>;
+  validatedProofs?: {
+    message: string;
+    merkleTreeRoot: string;
+    merkleTreeDepth: number;
+    scope: string;
+    nullifier: string;
+    points: string[];
+    timestamp?: string;
+  }[];
+}[]>
+```
+
+### `getGroup`
+
+Example,
+```tsx
+let group = await getGroup(1);
+```
+
+Reference,
+```tsx
+async getGroup(groupId: string, options: Omit<GroupOptions, "filters"> = {}): Promise<GroupResponse>
+```
+
+### `isGroupMember`
+
+Example,
+```tsx
+let res = await isGroupMember(1, 'commitment');
+```
+
+Reference,
+```tsx
+async isGroupMember(groupId: string, member: string): Promise<boolean>
+```
+
+## SimpleMerkleTree
 
 ## Vault

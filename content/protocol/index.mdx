@@ -2,21 +2,47 @@
 title: Overview
 ---
 
-import Card, { Cards } from 'components/Cards';
-import protocolDetails from 'components/protocolDetails.json'
+import { EyeOff, Fingerprint, Send, Lock, Vault, Handshake, BrickWall, Brain, Zap } from 'lucide-react';
 
 <br/>
 <Image src="/diagrams/arch-1-dark.png" alt="Home" width={500} height={500} className="themedImage"/>
 
-<Cards
-num={3}
-children={Object.keys(protocolDetails).map((key, i) => (
-<Card
-    key={i}
-    title={protocolDetails[key].title}
-    description={protocolDetails[key].description}
-    icon={protocolDetails[key].icon}
-    href={protocolDetails[key].href}
-/>
-))}
-/>
+<Cards>
+
+<Card icon={<EyeOff className="text-purple-300" />} title='ZK Proofs' href="/protocol/zk-proofs">
+Learn how Omnid leverages ZK Proofs for anonymous coordination.
+</Card>
+
+<Card icon={<Fingerprint className="text-blue-300" />} title='Authentication' href="/protocol/authentication">
+Learn how Omnid handles user authentication.
+</Card>
+
+<Card icon={<Send className="text-green-300" />} title='Cross Chain' href="/protocol/cross-chain">
+Learn how Omnid operates on & communicates using multiple chains.
+</Card>
+
+<Card icon={<Lock className="text-yellow-300" />} title='Encryption' href="/protocol/encryption">
+Learn how Omnid securely shares encrypted data.
+</Card>
+
+<Card icon={<Vault className="text-purple-300" />} title='Vault' href="/protocol/vault">
+Learn how the Vault handles storage and sharing of Encrypted Information.
+</Card>
+
+<Card icon={<BrickWall className="text-blue-300" />} title='Proxy RPC' href="/protocol/proxy-rpc">
+Learn how Omnid secures and preserves privacy at the transaction layer.
+</Card>
+
+<Card icon={<Zap className="text-orange-300" />} title='Function Cloud' href="/protocol/function-cloud">
+Learn how the we accelerate ZK Proofs for low power devices.
+</Card>
+
+<Card icon={<Handshake className="text-green-300" />} title='Connections' href="/protocol/connections">
+Learn how Omnid facilitates real world trust graphs using Connections.
+</Card>
+
+<Card icon={<Brain className="text-yellow-300" />} title='Alchemy AI' href="/protocol/alchemy">
+Learn how Alchemy helps you to understand you and others.
+</Card>
+
+</Cards>
