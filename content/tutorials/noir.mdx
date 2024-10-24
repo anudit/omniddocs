@@ -106,6 +106,20 @@ You should now have a `contract.sol` in your `./target/` directory.
 
 - Tutorial on [On-chain Verification](/tutorials/on-chain-verification)
 
+## Trimming your SRS
+
+```rust title="trim.rs"
+use noir_rs::srs::{get_srs, localsrs::LocalSrs, netsrs::NetSrs, Srs};
+
+fn main() {
+  let srs: Srs = NetSrs::new(4194304).to_srs(); // 2^22
+  let local_srs = LocalSrs(srs);
+
+  let save_path = "./srs22.dat";
+  local_srs.save(Some(&save_path));
+}
+```
+
 ## More Reading
 
 - https://noir-lang.org/docs/

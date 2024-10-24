@@ -5,6 +5,6 @@
     "subgraph",
     "transaction-relay",
     "explorer",
-    "manager"
+    "console"
   ]
 }

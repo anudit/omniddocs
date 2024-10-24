@@ -6,11 +6,7 @@ import Card, { Cards } from 'components/Cards';
 import protocolDetails from 'components/protocolDetails.json'
 
 <br/>
-<picture style={{height: '300px'}}>
-    <source srcSet="/diagrams/arch-1-light.png" media="(prefers-color-scheme: light)" />
-    <source srcSet="/diagrams/arch-1-dark.png" media="(prefers-color-scheme: dark)" />
-    <img src="/diagrams/arch-1-dark.png" alt="Image" className="image" />
-</picture>
+<Image src="/diagrams/arch-1-dark.png" alt="Home" width={500} height={500} className="themedImage"/>
 
 <Cards
 num={3}

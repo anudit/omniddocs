@@ -19,7 +19,7 @@ bunx expo install zk-expo expo-file-system @react-native-async-storage/async-sto
 ```
 
 
-We already have some sample files ready for you that you'll need to get your circuits running, create a directory `/public` in the project root and put these files in it.
+We already have some sample files ready for you that you'll need to get your circuits running.
 - [srs.dat](https://cdn.omnid.io/share/Dc_OClY0)
 - Bytecode
   ```js
@@ -51,7 +51,7 @@ module.exports = config;
 SRS (Structured Reference String) is a large file (~300MB). We need this for making our circuits work. This file can be downloaded once and stored locally for future use.
 
 <Callout type="info" emoji="ℹ️">
-  The entire ~300MB SRS is to support circuits of maximum size 33. You won't need all of it if your circuits are small. More [here](/) for later.
+  The entire ~300MB SRS is to support circuits of maximum size 33. You won't need all of it if your circuits are small, this file can be trimmed. More [here](/tutorials/noir#trimming-your-srs) for later.
 </Callout>
 
 
