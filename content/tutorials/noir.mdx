@@ -6,25 +6,106 @@ title: Noir
 Requires Rust `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 </Callout>
 
-## Install Noir
+## Install Noir and BB
+
+<Callout type="info">
+BB is Aztec's Barretenberg Proving backend.
+</Callout>
 
 ```bash
 curl -L https://raw.githubusercontent.com/noir-lang/noirup/main/install | bash
+curl -L https://raw.githubusercontent.com/AztecProtocol/aztec-packages/master/barretenberg/cpp/installation/install | bash
 ```
 
 Close the terminal, open another one, and run.
 
 ```bash
 noirup
+bbup --version 0.59.0
 ```
+
+<Callout type="info">
+Noir Lang & BB Compatibility
+  - Noir v0.36.0 - BB v0.59.0
+  - Noir v0.34.0 - BB v0.55.0
+  - Noir v0.33.0 - BB v0.47.1
+  - Noir v0.32.0 - BB v0.46.1
+  - Noir v0.31.0 - BB v0.41.0
+</Callout>
 
 ## Setting up the Project
 
-## Build and Test Circuit
+```bash
+cargo init && nargo init
+```
+
+Your folder structure should look like this
+
+<Files>
+  <Folder name="src" defaultOpen>
+   <File name="main.nr" />
+   <File name="main.rs" />
+  </Folder>
+  <File name="Cargo.toml" />
+  <File name="Nargo.toml" />
+</Files>
+
+## Build and Test your Circuit
+
+```bash
+nargo check
+```
+
+This should create a `Prover.toml` file like such,
+
+```bash
+x = ""
+y = ""
+```
+You can edit this file to pass inputs to your circuits.
+
+You should play around with this file and try out different inputs. Example,
+
+```bash
+x = "1"
+y = "2"
+```
+
+Now run your circuit,
+
+```bash
+nargo execute mywitness
+```
+Your witness should be available in `./target/mywitness.gz`
+
+```bash
+nargo compile
+```
+Your circuit should be present in `./target` directory.
+
+## Build and Verify your Proof
+
+### Prove
+```bash
+bb prove -b ./target/hello_world.json -w ./target/mywitness.gz -o ./target/proof
+```
+
+### Verify
+```bash
+bb write_vk -b ./target/hello_world.json -o ./target/vk
+bb verify -k ./target/vk -p ./target/proof
+```
 
 ## On-chain Verification
 
-- Your Solidity Verifier should be present in ``
+```bash
+bb write_vk -b ./target/hello_world.json
+bb contract
+```
+You should now have a `contract.sol` in your `./target/` directory.
+
 - Tutorial on [On-chain Verification](/tutorials/on-chain-verification)
 
 ## More Reading
+
+- https://noir-lang.org/docs/
