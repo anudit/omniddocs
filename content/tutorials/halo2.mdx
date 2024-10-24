@@ -2,13 +2,42 @@
 title: Halo2
 ---
 
-Requires Rust
+<Callout type="info">
+Requires Rust `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+</Callout>
 
-## Fork the template.
+## Setup the Project
+
+Fork the template, https://github.com/anudit/halo2-template.
+It simplifies the process of compiling Halo2 circuits in a highly customizable way.
+
+Your project structure should look something like this.
+
+<Files>
+  <Folder name="build"/>
+  <Folder name="circomlib"/>
+  <Folder name="circuits" defaultOpen>
+    <File name="CheckMult.circom" />
+  </Folder>
+  <Folder name="scripts"/>
+  <Folder name="templates"/>
+  <Folder name="tests" defaultOpen>
+   <File name="checkMult.test.ts" />
+  </Folder>
+  <File name="package.json" />
+</Files>
+
+## Understand the Circuit
+
+
 
 ## Understand the C Glue
 
+
+
 ## Build and Test
+
+
 
 ## On-chain Verification
 

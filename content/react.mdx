@@ -37,7 +37,7 @@ icon: React
 </Tabs>
 
 This SDK is only for the Web, React-Native based users should use [`zk-expo`](/expo/circom) instead.
-Here is a tutorial on Intergating this on the [`Web`](/tutorial/web).
+Here is a tutorial on Intergating this on the [`Web`](/tutorials/web).
 
 ## Making Proofs
 
@@ -149,3 +149,64 @@ export const useWebSocket = (
 ```
 
 ## Managing Passkeys
+
+```
+import { Passkey } from '@omnid/react';
+```
+
+### `create`
+
+Reference,
+```tsx
+
+```
+
+Usage,
+```tsx
+const { data: credential, error } = await Passkey.create({
+    appName: "Bio Demo",
+    username: "Omnid Devicekey"
+});
+console.log({ credential })
+```
+
+### `getPublicKeyFromAttestationResponse`
+
+Reference,
+```tsx
+
+```
+
+Usage,
+```
+const { data: publicKey } = Passkey.getPublicKeyFromAttestationResponse({
+    response,
+} as { response: AuthenticatorAttestationResponse });
+```
+
+### `importPublicKeyAsCryptoKey`
+
+Usage,
+```tsx
+const publicKeyAsCryptoKey = await Passkey.importPublicKeyAsCryptoKey(
+    publicKey as ArrayBuffer
+);
+const exported = await window.crypto.subtle.exportKey(
+    "jwk",
+    publicKeyAsCryptoKey as CryptoKey
+);
+```
+
+### `importPublicKeyAsCryptoKey`
+
+Usage,
+```tsx
+const { data: assertion, response, error } = await Passkey.auth(Buffer.from(localId.id, 'base64'), challenge);
+```
+
+### `verifySignature`
+
+Usage,
+```tsx
+const verificationData = await Passkey.verifySignature({ publicKey, assertation });
+```
