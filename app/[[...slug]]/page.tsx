@@ -1,3 +1,4 @@
+import * as React from "react";
 import { source } from "@/lib/source";
 import {
   DocsPage,
@@ -13,6 +14,7 @@ import { Card, Cards } from "fumadocs-ui/components/card";
 import { Callout } from "fumadocs-ui/components/callout";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { File, Folder, Files } from "fumadocs-ui/components/files";
+import { GlossaryComp } from "@/components/Glossary";
 
 const mdxComponents = {
   ...defaultMdxComponents,
@@ -27,6 +29,7 @@ const mdxComponents = {
   File: File,
   Folder: Folder,
   Files: Files,
+  GlossaryComp: GlossaryComp,
   Button: ({ ref: _ref, ...props }: any) => (
     <button {...props}>{props.children}</button>
   ),
@@ -76,7 +79,7 @@ export async function generateMetadata(props: {
   if (!page) notFound();
 
   return {
-    title: page.data.title,
+    title: "Omnid - " + page.data.title,
     description: page.data.description,
   };
 }

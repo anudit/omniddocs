@@ -232,6 +232,6 @@ async function groth16Prove(
 ## Some Gotchas
 1. Make sure to update your dependencies, also use `npx expo install --fix`.
 1. Use Development Client Builds, this won't work on Expo Go as it requires native code.
-2. If your app crashes while testing `groth16Prove` on a real iOS device, run the app using `bunx expo prebuild` and XCode. iOS has some wierd quirks while running Wasm runtimes, this should be fine in the production versions of your app. You can also use `groth16ProveV2` which doesn't need the wasm runtime and is faster.
+2. If your app crashes while testing `groth16Prove` on a real iOS device, run the app using `bun expo prebuild` and XCode. iOS has some wierd quirks while running Wasm runtimes, this should be fine in the production versions of your app. You can also use `groth16ProveV2` which doesn't need the wasm runtime and is faster.
 3. iOS has memory restrictions of around 2-3GB imposed on each app. If your circuits are really large you might run into issues, consider splitting the circuits or using `groth16ProveV2` to optimize your circuits.
-4. If your iOS app runs into any linking issues on developement when using `eas build`, do an `expo prebuild` and open the `ios` folder in XCode. XCode GUI uses certain Apple internals that perform better than eas builds that use `xcodebuild` under the hood.
+4. If your iOS app runs into any linking issues on developement when using `eas build`, do an `bun expo prebuild` and open the `ios` folder in XCode. XCode GUI uses certain Apple internals that perform better than eas builds that use `xcodebuild` under the hood.

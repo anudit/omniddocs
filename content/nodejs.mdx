@@ -291,4 +291,54 @@ async isGroupMember(groupId: string, member: string): Promise<boolean>
 
 ## SimpleMerkleTree
 
+A utility class for you to quickly make merkle proofs.
+
+### `makeTree`
+
+Reference,
+```tsx
+makeTree(hashedValues: Array<bigint>) {}
+```
+
+### `getProof`
+
+Reference,
+```tsx
+getProof(leafHash: bigint): {
+    found: boolean;
+    path: bigint[];
+    pathInd: number[];
+}: { found: true, path, pathInd }
+```
+
+### `getCalldata`
+
+Reference,
+```tsx
+getCalldata(proof: {
+    path: bigint[];
+    pathInd: number[];
+}, leafHash: bigint) {
+    return JSON.stringify({
+        leaf: this.bigint2hex(leafHash),
+        path_elements: proof.path.map(this.bigint2hex),
+        path_indices: proof.pathInd
+    })
+}
+```
+
+### `getRootHash`
+
+```tsx
+let root = getRootHash()
+```
+
 ## Vault
+
+Internals about [Vault](/protocol/vault)
+
+## Stealth Addresses
+
+<Callout type="info">
+Support for Ethereum stealth addresses as defined in [EIP-5564](https://eips.ethereum.org/EIPS/eip-5564) and [EIP-6538](https://eips.ethereum.org/EIPS/eip-6538)
+</Callout>
