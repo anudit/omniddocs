@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Login Proof API",
+    "version": "1.0.0",
+    "description": "API for submitting login proof with encoded secret, message, and scope."
+  },
+  "servers": [
+    {
+      "url": "https://fc.omnid.io"
+    }
+  ],
+  "paths": {
+    "/makeproof/loginProof": {
+      "post": {
+        "summary": "Submit Login Proof",
+        "description": "Submits encoded login proof details to validate user credentials.",
+        "operationId": "submitLoginProof",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "secret": {
+                    "type": "string",
+                    "description": "Encoded secret for login proof",
+                    "example": "547925519087152460452796139673145541278503527266273511184260115996140948003"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Encoded message for login proof",
+                    "example": "416065734043548809674585754815497663209554112884109213756134343039894205867"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Scope identifier for login proof",
+                    "example": "187035976211163640032000461805755068405187575174480755232212391996596767257"
+                  }
+                },
+                "required": ["secret", "message", "scope"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login proof successfully submitted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Proof submission successful"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Server encountered an error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

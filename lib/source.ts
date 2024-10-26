@@ -4,6 +4,11 @@ import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import { icons } from "lucide-react";
 import { ReactNativeIcon, ExpoIcon, NodeJsIcon } from "@/components/icons";
+import { createOpenAPI } from "fumadocs-openapi/server";
+
+export const openapi = createOpenAPI({
+  // options
+});
 
 export const source = loader({
   baseUrl: "/",

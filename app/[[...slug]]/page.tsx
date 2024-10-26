@@ -15,6 +15,7 @@ import { Callout } from "fumadocs-ui/components/callout";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { File, Folder, Files } from "fumadocs-ui/components/files";
 import { GlossaryComp } from "@/components/Glossary";
+import { openapi } from "@/lib/source";
 
 const mdxComponents = {
   ...defaultMdxComponents,
@@ -30,6 +31,7 @@ const mdxComponents = {
   Folder: Folder,
   Files: Files,
   GlossaryComp: GlossaryComp,
+  APIPage: openapi.APIPage,
   Button: ({ ref: _ref, ...props }: any) => (
     <button {...props}>{props.children}</button>
   ),

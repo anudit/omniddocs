@@ -1,9 +1,18 @@
 ---
 title: Function Cloud
 icon: Zap
+full: true
+_openapi:
+  method: POST
+  route: /makeproof/loginProof
+  toc: []
+  structuredData:
+    headings: []
+    contents:
+      - content: Submits encoded login proof details to validate user credentials.
 ---
 
-Function Cloud is a fast proof execution environment supporting multiple backends. This is particularly useful for edge/IoT devices with limited computing capabilities.
+Function Cloud is a fast proof execution environment supporting multiple backends. This is particularly useful for edge/IoT devices with limited computing capabilities and proof aggregation which requires large computing capabilities.
 
 <Callout type="info">
 We will soon be adding support for private/MPC powered proofs that hide inputs securely too.
@@ -18,3 +27,7 @@ FC supports the following proving backends,
 6. SP1
 
 https://fc.omnid.io
+
+## `groth16` Demo
+
+<APIPage document={"./scripts/openapi.json"} operations={[{"path":"/makeproof/loginProof","method":"post"}]} hasHead={false} />
