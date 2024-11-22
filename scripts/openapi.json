@@ -69,6 +69,68 @@
           }
         }
       }
+    },
+    "/noir/demo": {
+      "post": {
+        "summary": "Submit Noir Demo",
+        "description": "Submits bytecode, inputs, and kind for Noir demo processing.",
+        "operationId": "submitNoirDemo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bytecode": {
+                    "type": "string",
+                    "description": "Base64 encoded bytecode for Noir processing",
+                    "example": "H4sIAAAAAAAA/7VUSQ7DIAyEhKa99ic2SzC3fqWo5P8vqBopUCHCLWYkZIQlMx4vUhxQ+7mJM+ZsX9kaWK1NXic0+AYdIjmwLq6EhI7cR5MxiSz5EIOHgNYk3FwwGxyoY8E1oGTkNfHxgqKj7OgpGz3hGpCTt2zqfuLPRXqUEPOAuIq5+UfkrfhrBGJg0yrB27Sq4Vnfe0P4f7xnu3R8BY/9TPn+ZRa4bNd685a/VOVfKi6SnwvW+fYm/9nR5wcPIDK6OgYAAA=="
+                  },
+                  "inputs": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Array of inputs for Noir processing",
+                    "example": ["1", "2"]
+                  },
+                  "kind": {
+                    "type": "string",
+                    "description": "Type of request, such as 'honk'",
+                    "example": "honk"
+                  }
+                },
+                "required": ["bytecode", "inputs", "kind"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Noir demo successfully processed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Demo processing successful"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Server encountered an error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -9,6 +9,14 @@ const config = {
     mdxRs: true,
   },
   typescript: { ignoreBuildErrors: true },
+  async rewrites() {
+    return [
+      {
+        source: "/llms.txt",
+        destination: "/api/llm",
+      },
+    ];
+  },
 };
 
 export default withMDX(config);
