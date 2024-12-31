@@ -11,7 +11,9 @@ export const publicClientOp = createPublicClient({
 
 export const publicClientArb = createPublicClient({
   chain: optimismSepolia,
-  transport: http("https://arbitrum-sepolia.blockpi.network/v1/rpc/public"),
+  transport: http(
+    "https://arbitrum-sepolia.blockpi.network/v1/rpc/bcd1b363a28f686e0adfff448cb364268d764f51",
+  ),
 });
 
 const Balance = ({
