@@ -1,8 +1,8 @@
+import type { NextConfig } from "next";
 import { createMDX } from "fumadocs-mdx/next";
 const withMDX = createMDX();
 
-/** @type {import('next').NextConfig} */
-const config = {
+const config:NextConfig = {
   reactStrictMode: true,
   experimental: {
     reactCompiler: true,
