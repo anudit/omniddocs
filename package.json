@@ -6,6 +6,7 @@
     "build": "next build --turbo",
     "dev": "next dev",
     "start": "next start",
+    "postbuild": "next-sitemap",
     "postinstall": "fumadocs-mdx",
     "outdated": "pnpx npm-check-updates --interactive"
   },
