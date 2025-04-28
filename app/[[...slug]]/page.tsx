@@ -31,7 +31,7 @@ const mdxComponents = {
   Folder: Folder,
   Files: Files,
   GlossaryComp: GlossaryComp,
-  APIPage: openapi.APIPage,
+  // APIPage: APIPage,
   Button: ({ ref: _ref, ...props }: any) => (
     <button {...props}>{props.children}</button>
   ),
